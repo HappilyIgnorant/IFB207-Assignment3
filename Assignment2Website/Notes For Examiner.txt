@@ -1,0 +1,12 @@
+		***Guid to to navigate to all 4 pages.***
+
+
+The Virtuosity logo universially acts as a link to "index.html"
+
+To get to the "item-details" page use click on the popular item below on the "index.html"
+
+To get to the "item-create.html" click on LOG IN, top right corner of the screen.
+
+To get to the "item-manage.html" click on the bold AUCTION link found after selecting "item-create.html" or the LOG IN as this simulates entering the seller account.
+
+You can return to the "index.html" by selecting LOG OUT on either the "item-create.html" or "item-manage.html"
