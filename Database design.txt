@@ -1,0 +1,39 @@
+Table 1: Artworks (Item Details)
+Product ID (PK)
+Name
+category
+Description
+price
+avalability: boolean
+artist ID (FK)
+
+Table 2: Purchase
+Purchase ID (PK)
+Buyer ID (FK)
+Seller ID (FK)
+Product ID (FK)
+Date
+Price
+Notes (Optional)
+
+Table 3: Bids
+Bid ID (PK)
+User ID (the bidder) (FK)
+Seller ID (FK)
+Date of bid
+
+Table 4: User
+User ID (PK)
+Username (for login)
+Password (for login): hash string
+Name
+Email address
+Profile Information (Optional)
+Favourites (Optional)
+Join Date
+is Buyer: boolean
+is Seller: boolean
+
+
+
+
