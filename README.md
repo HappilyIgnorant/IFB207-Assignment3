@@ -14,6 +14,6 @@ NOTICE, if you recieve error messages when running PIP in your terminal console,
 
 pip install flask
 pip install flask_bootstrap
-pip pinstall flask_sqlalchemy
+pip install flask_sqlalchemy
 pip install flask_login
 pip install flask_wtf

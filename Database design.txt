@@ -20,6 +20,7 @@ Table 3: Bids
 Bid ID (PK)
 User ID (the bidder) (FK)
 Seller ID (FK)
+Bid amount
 Date of bid
 
 Table 4: User
