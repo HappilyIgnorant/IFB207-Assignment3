@@ -13,7 +13,7 @@ NOTICE, if you recieve error messages about being unable to find pip or python i
 
 pip install flask
 pip install flask_bootstrap
-pip pinstall flask_sqlalchemy
+pip install flask_sqlalchemy
 pip install flask_login
 pip install flask_wtf
 

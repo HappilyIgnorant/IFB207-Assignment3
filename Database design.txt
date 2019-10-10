@@ -23,6 +23,7 @@ Bid ID (PK)
 Artwork ID (FK)
 User ID (the bidder) (FK)
 Seller ID (FK)
+Bid amount
 Date of bid
 
 Table 4: User
