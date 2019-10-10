@@ -3,9 +3,11 @@ Product ID (PK)
 Name
 category
 Description
+image address
 price
+create date
 avalability: boolean
-artist ID (FK)
+seller ID (FK)
 
 Table 2: Purchase
 Purchase ID (PK)
@@ -18,6 +20,7 @@ Notes (Optional)
 
 Table 3: Bids
 Bid ID (PK)
+Artwork ID (FK)
 User ID (the bidder) (FK)
 Seller ID (FK)
 Date of bid
@@ -26,12 +29,12 @@ Table 4: User
 User ID (PK)
 Username (for login)
 Password (for login): hash string
-Name
 Email address
+Name
 Profile Information (Optional)
+Profile picture (Optional, some random default picture)
 Favourites (Optional)
 Join Date
-is Buyer: boolean
 is Seller: boolean
 
 
