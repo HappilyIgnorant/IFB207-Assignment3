@@ -1,7 +1,8 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField
+from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, FileField, SelectMultipleField
 from wtforms.validators import InputRequired, Length, Email, EqualTo
+
 
 
 #creates the login information
@@ -22,13 +23,13 @@ class RegisterForm1(FlaskForm):
     #next (submit) button
     next = SubmitField("Next")
 
-class RegistrationForm2(FlaskForm):
-    avatar=FileField("Upload avatar", validators=[regexp(u'^[^/\\]\.jpg$'), regexp(u'^[^/\\]\.png$'), regexp(u'^[^/\\]\.jpeg$'), 
-                regexp(u'^[^/\\]\.gif$')])
+class RegisterForm2(FlaskForm):
+    #avatar=FileField("Upload avatar", validators=[regexp(u'^[^/\\]\.jpg$'), regexp(u'^[^/\\]\.png$'), regexp(u'^[^/\\]\.jpeg$'), 
+                #regexp(u'^[^/\\]\.gif$')])
     biography=TextAreaField("Bio", validators=[Length(max=1000, message="The length of the bio must be less than 1000 words.")] )
     next = SubmitField("Next")
 
-class RegistrationForm3(FlaskForm):
+class RegisterForm3(FlaskForm):
     categories=SelectMultipleField(choices=["Abstract", "Art Deco", "Art Nouveau", "Baroque", "Bahaus", "Classical Realism", "Conceptual"
                 "Cubism", "Digital", "Environmental", "Excessivism", "Expressionism", "Fantasy", "Figurative", "Fine Art", "Folk", "Futurism",
                 "Geometric", "Graffiti", "Gothic", "Hyperrealism", "Impressionism", "International", "Kitsch", "Land", "Metaphysical", 
