@@ -4,10 +4,8 @@
 {% block content %}
 
 <div class="container">
-    <h1>Register:</h1>
-    <div class="row mt-5">
+    <div class="row mt-5 py-4">
         <div class="col md-12">
-
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
                 <!-- Indicators -->
                 <ol class="carousel-indicators">
@@ -18,16 +16,15 @@
                 
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
-                    <div class="item active">
-                        {{wtf.quick_form(form)}}
+                    <h1>Register:</h1>
+                    <div class="carousel-item active">
+                        {{wtf.quick_form(form1)}}
                     </div>
-                
-                    <div class="item">
-                        {{wtf.quick_form(form)}}
+                    <div class="carousel-item">
+                        {{wtf.quick_form(form2)}}
                     </div>
-                
-                    <div class="item">
-                        {{wtf.quick_form(form)}}
+                    <div class="carousel-item">
+                        {{wtf.quick_form(form3)}}
                     </div>
                 </div>
                 
