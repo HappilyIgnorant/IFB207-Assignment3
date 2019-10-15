@@ -31,11 +31,20 @@
                     </div>
 
                 </div>
+                {% if current_user.is_authenticated %}
                 <div class="col-4 text-right loginblock">
-                    <i class="fas fa-user "></i>
-                    <a href="item_create.html" id="li_link" class="pr-1">LOG IN</a>
-                    <a href="#">SIGN UP</a>
-                </div>
+                        <i class="fas fa-user "></i>
+                        <a href="#" id="li_link" class="pr-1">Username</a>
+                        <a href="#">LOG OUT</a>
+                    </div>
+                {% else %}
+                <div class="col-4 text-right loginblock">
+                        <i class="fas fa-user "></i>
+                        <a href="#" id="li_link" class="pr-1">LOG IN</a>
+                        <a href="#">SIGN UP</a>
+                    </div>
+                {% endif %} 
+                
             </div>
             <!--Navigation Menu-->
             <nav class="navbar navbar-expand-lg navbar-light borders navbar-custom hidenav">
