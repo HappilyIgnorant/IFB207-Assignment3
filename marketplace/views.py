@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template
-from .forms import RegisterForm1, RegisterForm2, RegisterForm3
+from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm
 
 bp = Blueprint('main', __name__)
 
@@ -7,6 +7,11 @@ bp = Blueprint('main', __name__)
 @bp.route('/')
 def index():
      return render_template("index.html")
+
+@bp.route('/login')
+def login():
+    form = LoginForm()
+    return render_template('login.html', title='Sign In', form=form)
 
 @bp.route('/item_create')
 def item_create():

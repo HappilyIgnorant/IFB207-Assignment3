@@ -20,7 +20,7 @@
                 <div class="col-3">
                     <!--<a href="#" class="float-left mr-3"><img src="https://via.placeholder.com/40x30"></a>-->
                     <!--<h4 class="companyName"><a href="#" class="">VIRTUOSITY</a></h4>-->
-                    <a href="index.html"><div class="companyLogo"></div></a>
+                    <a href="{{ url_for('main.index') }}"><div class="companyLogo"></div></a>
                 </div>
                 <div class="col-4">
                     <div class="input-group md-form form-sm form-2 pl-0 searchbox">
@@ -40,7 +40,7 @@
                 {% else %}
                 <div class="col-4 text-right loginblock">
                         <i class="fas fa-user "></i>
-                        <a href="#" id="li_link" class="pr-1">LOG IN</a>
+                        <a href="{{ url_for('main.login') }}" id="li_link" class="pr-1">LOG IN</a>
                         <a href="#">SIGN UP</a>
                     </div>
                 {% endif %} 
