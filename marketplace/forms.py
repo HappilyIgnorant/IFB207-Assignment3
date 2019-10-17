@@ -30,8 +30,8 @@ class RegisterForm2(FlaskForm):
     #avatar=FileField("Upload avatar", validators=[regexp(u'^[^/\\]\.jpg$'), regexp(u'^[^/\\]\.png$'), regexp(u'^[^/\\]\.jpeg$'), 
                 #regexp(u'^[^/\\]\.gif$')])
     # I need help with this I can't figure out how to make it work, if seller then allow bio else buyer
-    account_seller=BooleanField()
-    if account_seller = true
+    #account_seller=BooleanField()
+    #if account_seller = true
     biography=TextAreaField("Bio", validators=[Length(max=1000, message="The length of the bio must be less than 1000 words.")] )
     next = SubmitField("Next")
 
