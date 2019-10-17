@@ -30,5 +30,4 @@ def register():
      form1 = RegisterForm1()
      form2 = RegisterForm2()
      form3 = RegisterForm3()
-     return render_template("registration.html", 
-     form1 = form1, form2 = form2, form3 = form3)
+     return render_template("registration.html",  f1=form1, f2=form2, f3=form3)
