@@ -2,7 +2,7 @@
 {% block content %}
     <head>
         <meta charset="utf-8" class="">
-        <title class="">Virtuosity</title>
+        <title class="">Virtuosity-Login</title>
         <link href="../static/libraries/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
         <link href="../static/css/virtuosity.css" rel="stylesheet" type="text/css"/>
 
@@ -10,30 +10,44 @@
         body{
             padding-top: 10vh;
         }
+        
         </style>
     </head>
     <body>
         <div class="container">
                 <a href="{{ url_for('main.index') }}"><button type="button" class="btn btn-warning btn-circle btn-xl" ><i class="fa fa-times"></i>
                 </button></a>
-
-            <div class="row">
-                <h1>Sign In</h1>
-            </div>
-            <div class="row">
-                <form action="" method="post" novalidate>
-                    {{ form.hidden_tag() }}
-                    <p>
-                        {{ form.user_name.label }}<br>
-                        {{ form.user_name(size=32) }}
-                    </p>
-                    <p>
-                        {{ form.password.label }}<br>
-                        {{ form.password(size=32) }}
-                    </p>
-                    <p>{{ form.remember_me() }} {{ form.remember_me.label }}</p>
-                    <p>{{ form.submit() }}</p>
-                </form>
+            <div class="row h-5">
+                <div class="col-12">
+                    <h1>Sign In</h1>
+                </div>
+                <div class="col-12">
+                    <form action="" method="post" validate>
+                        {{ form.hidden_tag() }}
+                        <p>
+                            {{ form.user_name.label }}
+                            <br>
+                            {{ form.user_name(size=64) }}
+                            <br>
+                                <a href="#">
+                                    Forgot your password?
+                                </a>
+                        </p>
+                        
+                        <p>
+                            {{ form.password.label }}
+                            <br>
+                            {{ form.password(size=32) }}
+                        </p>
+                        <p>{{ form.remember_me() }}
+                            {{ form.remember_me.label }}
+                        </p>
+                        <p>
+                            {{ form.submit() }}
+                        </p>
+                    </form>
+                </div>
+                
                 <a href="{{ url_for('main.register') }}">CLICK</a>
             </div>
         </div>

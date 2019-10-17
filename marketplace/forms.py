@@ -1,6 +1,6 @@
 
 from flask_wtf import FlaskForm
-from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, FileField, SelectMultipleField, BooleanField
+from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, FileField, SelectMultipleField, BooleanField, RadioField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 
@@ -8,7 +8,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 #creates the login information
 class LoginForm(FlaskForm):
     user_name=StringField("User Name", validators=[DataRequired('Enter user name')])
-    password=PasswordField("Password", validators=[DataRequired('Enter user password')])
+    password=PasswordField("Password", validators=[DataRequired('Enter password')])
     submit = SubmitField("Login")
     remember_me = BooleanField('Remember Me')
 
@@ -16,8 +16,8 @@ class LoginForm(FlaskForm):
 class RegisterForm1(FlaskForm):
     user_name=StringField("User Name", validators=[DataRequired()])
     first_name=StringField("First Name", validators=[DataRequired()])
-    Last_name=StringField("Last Name", validators=[DataRequired()])
-    email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
+    last_name=StringField("Last Name", validators=[DataRequired()])
+    email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email")])
     
     #linking two fields - password should be equal to data entered in confirm
     password=PasswordField("Password", validators=[DataRequired(),
@@ -47,5 +47,23 @@ class RegisterForm3(FlaskForm):
   #              "Minimalism", "Modernism", "Neoism", "Photorealism", "Pixel", ("Pop"), ("Realism"), ("Romanticism"), ("Surrealism")])
 
 class ItemDetails(FlaskForm):
+    AVAILABLE_CHOICES = [('1'),('2')]
+    #selling_options = [("1", "Buy"), ("2", "Auction"), ("3", "Buy/Auction")]
     name = StringField("Title", validators=[DataRequired(), Length(max = 75)])
-    category = 
+    category = SelectMultipleField("Categories", choices=[AVAILABLE_CHOICES])
+    payment = IntegerField("$ - Value in AUD", validators=[DataRequired()])
+    options = RadioField('Label', choices=[('value1','Auction'),('value2','Buy'),('value3', 'Auction/Buy')])
+    description = TextAreaField("Description", validators=[DataRequired(), Length(max = 5000)])
+    image1 = FileField("Image File")
+    image2 = FileField("Image File")
+    image3 = FileField("Image File")
+    image4 = FileField("Image File")
+    image5 = FileField("Image File")
+    image6 = FileField("Image File")
+    image7 = FileField("Image File")
+    image8 = FileField("Image File")
+    image9 = FileField("Image File")
+    image10 = FileField("Image File")
+    image11 = FileField("Image File")
+    image12 = FileField("Image File")
+    post = SubmitField("Post")

@@ -1,99 +1,98 @@
 ﻿﻿{% extends 'base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
 
 
 {% block content %}
 
 <div class="container-fluid body-container">
-    <form class="item-form">
-        <div class="row">
-            <div class="col-md-7">                   
-                <div class="form-group row">
-                    <label for="colFormTitle" class="col-sm-2 col-form-label">Title</label>
-                    <div class="col-sm-10">
-                        <input type="text" class="form-control" id="colFormTitle" placeholder="Name of your product..">
-                        <div class="float-right">75 character(s) remaining</div>
-                    </div>
-                </div>
-
-                <div class="form-group row">
-                    <label for="colFormTitle" class="col-sm-2 col-form-label">Category</label>
-                    <div class="col-sm-10">
-                        <select class="form-control">
-                            <option selected>Oil Painting</option>
-                            <option value="1">Print</option>
-                            <option value="2">Sculpture</option>
-                            <option value="3">Watercolor</option>
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="colFormPayment" class="col-sm-2 col-form-label">Payment</label>
-                    <div class="col-sm-4">
-                        <input type="text" class="form-control" id="colFormPayment" placeholder="$ - Value in AUD">
-                    </div>
-                    <div class="col-sm-4">
-                        <label class="col-sm-12 col-form-label">Options</label>
-                        <label class="radio-inline "><input type="radio" name="optradio" checked>Buy</label>
-                        <label class="radio-inline "><input type="radio" name="optradio">Auction</label>
-                        <label class="radio-inline "><input type="radio" name="optradio">Buy/Auction</label>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label for="colFormDescr" class="col-sm-2 col-form-label">Description</label>
-                    <div class="col-sm-10">
-                        <textarea class="form-control" id="colFormDescr" placeholder="Description of your product.." rows="10"></textarea>                            
-                        <div class="float-right">5000 character(s) remaining</div>                                
-                    </div>
-
-
+    <div class="row">
+        <div class="col-md-7">                   
+            <div class="row">
+                <div class="col-sm-2 col-form-label">{{ form.name.label }}</label>
+                <div class="col-sm-10">
+                    {{ form.name }}
+                    <div class="float-right">75 character(s) remaining</div>
                 </div>
             </div>
-            <div class="col-md-5">
-                <div class="row">
-                    <div class="camera-note">
-                        <i class="fas fa-camera round"></i>
-                        Images are essential when attracting potential buyers. 
-                        It is recommended to have truthful and many quality photographs 
-                        from various angles for the best representation of your item.                      
-                    </div>
-                    <div class="row">
-                        <button type="button" class="btn btn-orange">Add Pictures</button>
-                    </div>
-                    <div class="container-fluid">
-                        <div class="row mt-2">
-                            <div class="col-3 campic"><img src="../static/img/activecam.png"></div>
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                        </div>
-                        <div class="row mt-2">
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                            <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
-                        </div>
 
-                    </div>
-
-
+            <div class="form-group row">
+                <label for="colFormTitle" class="col-sm-2 col-form-label">Category</label>
+                <div class="col-sm-10">
+                    <select class="form-control">
+                        <option selected>Oil Painting</option>
+                        <option value="1">Print</option>
+                        <option value="2">Sculpture</option>
+                        <option value="3">Watercolor</option>
+                    </select>
                 </div>
+            </div>
+            <div class="form-group row">
+                <label for="colFormPayment" class="col-sm-2 col-form-label">Payment</label>
+                <div class="col-sm-4">
+                    <input type="text" class="form-control" id="colFormPayment" placeholder="$ - Value in AUD">
+                </div>
+                <div class="col-sm-4">
+                    <label class="col-sm-12 col-form-label">Options</label>
+                    <label class="radio-inline "><input type="radio" name="optradio" checked>Buy</label>
+                    <label class="radio-inline "><input type="radio" name="optradio">Auction</label>
+                    <label class="radio-inline "><input type="radio" name="optradio">Buy/Auction</label>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="colFormDescr" class="col-sm-2 col-form-label">Description</label>
+                <div class="col-sm-10">
+                    <textarea class="form-control" id="colFormDescr" placeholder="Description of your product.." rows="10"></textarea>                            
+                    <div class="float-right">5000 character(s) remaining</div>                                
+                </div>
+
 
             </div>
         </div>
+        <div class="col-md-5">
             <div class="row">
-                <div class="col-sm-7">
-                    <div class="float-right">
-                        <div class="btn btn-orange ">submit</div>
+                <div class="camera-note">
+                    <i class="fas fa-camera round"></i>
+                    Images are essential when attracting potential buyers. 
+                    It is recommended to have truthful and many quality photographs 
+                    from various angles for the best representation of your item.                      
+                </div>
+                <div class="row">
+                    <button type="button" class="btn btn-orange">Add Pictures</button>
+                </div>
+                <div class="container-fluid">
+                    <div class="row mt-2">
+                        <div class="col-3 campic"><img src="../static/img/activecam.png"></div>
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
                     </div>
-                </div>  
-            </div>                  
-    </form>
+                    <div class="row mt-2">
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
+                        <div class="col-3 campic"><img src="../static/img/inactivecam.png"></div>
+                    </div>
+
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="float-right">
+                    <div class="btn btn-orange ">submit</div>
+                </div>
+            </div>  
+        </div>                  
 </div>
 
 {% endblock %}
