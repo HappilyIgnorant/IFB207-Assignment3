@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, flash, redirect
 from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm
 
 bp = Blueprint('main', __name__)
@@ -8,10 +8,14 @@ bp = Blueprint('main', __name__)
 def index():
      return render_template("index.html")
 
-@bp.route('/login')
+@bp.route('/login' , methods=['GET', 'POST'])
 def login():
     form = LoginForm()
-    return render_template('login.html', title='Sign In', form=form)
+    if form.validate_on_submit():
+        flash('Login requested for user {}, remember_me={}'.format(
+            form.user_name.data, form.remember_me.data))
+        return redirect('/')
+    return render_template('login.html', title='Log In', form=form)
 
 @bp.route('/item_create')
 def item_create():
