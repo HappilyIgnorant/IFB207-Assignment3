@@ -4,18 +4,19 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
-db=SQLAlchemy()
 
+db = SQLAlchemy()
+from .models import User, Artwork, Bid, Purchase
 
-#create a function that creates a web application
+# create a function that creates a web application
 # a web server will run this web application
 def create_app():
-  
-    app=Flask(__name__)  # this is the name of the module/package that is calling this app
-    app.debug=True
-    app.secret_key='utroutoru'
+    app = Flask(__name__)  # this is the name of the module/package that is calling this app
     #set the app configuration data 
     app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///marketplace.sqlite'
+    app.debug=True
+    app.secret_key='utroutoru'
+    
     #initialize db with flask app
     db.init_app(app)
 
