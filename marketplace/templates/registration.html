@@ -1,7 +1,7 @@
 {% import "bootstrap/wtf.html" as wtf %}
 {% block content %}
 
- --><div class="container">
+ <div class="container">
     <div class="row mt-5 py-4">
         <div class="col md-12">
             <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -16,13 +16,13 @@
                 <div class="carousel-inner">
                     <h1>Register:</h1>
                     <div class="carousel-item active">
-                        {{wtf.quick_form(form1)}}
+                        {{wtf.quick_form(f1)}}
                     </div>
                     <div class="carousel-item">
-                        {{wtf.quick_form(form2)}}
+                        {{wtf.quick_form(f2)}}
                     </div>
                     <div class="carousel-item">
-                        {{wtf.quick_form(form3)}}
+                        {{wtf.quick_form(f3)}}
                     </div>
                 </div>
                 

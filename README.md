@@ -11,11 +11,7 @@ If your python environment is setup correctly then you should be able to right c
 
 NOTICE, if you recieve error messages about being unable to find pip or python in your terminal console, then reinstall python (or modify the installation from the add/remove programs menu)and MAKE SURE "Environmental variables" is ticked and your system will then find python and pip (although flask may need a reinstall)
 
-pip install flask
-pip install flask_bootstrap
-pip install flask_sqlalchemy
-pip install flask_login
-pip install flask_wtf
+pip install flask flask_bootstrap flask_sqlalchemy flask_login flask_wtf
 
 See below for a good video on how to setup and program this assignment in Flask 
 

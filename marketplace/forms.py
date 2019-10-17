@@ -15,8 +15,8 @@ class LoginForm(FlaskForm):
  # this is the registration form
 class RegisterForm1(FlaskForm):
     user_name=StringField("User Name", validators=[DataRequired()])
-    first_name=StringField("First Name", validator=[DataRequired()])
-    Last_name=StringField("Last Name", validator=[DataRequired()])
+    first_name=StringField("First Name", validators=[DataRequired()])
+    Last_name=StringField("Last Name", validators=[DataRequired()])
     email_id = StringField("Email Address", validators=[Email("Please enter a valid email")])
     
     #linking two fields - password should be equal to data entered in confirm
@@ -36,7 +36,12 @@ class RegisterForm2(FlaskForm):
     next = SubmitField("Next")
 
 class RegisterForm3(FlaskForm):
-    categories=SelectMultipleField(choices=["Abstract", "Art Deco", "Art Nouveau", "Baroque", "Bahaus", "Classical Realism", "Conceptual"
-                "Cubism", "Digital", "Environmental", "Excessivism", "Expressionism", "Fantasy", "Figurative", "Fine Art", "Folk", "Futurism",
-                "Geometric", "Graffiti", "Gothic", "Hyperrealism", "Impressionism", "International", "Kitsch", "Land", "Metaphysical", 
-                "Minimalism", "Modernism", "Neoism", "Photorealism", "Pixel", "Pop", "Realism", "Romanticism", "Surrealism"])
+    AVAILABLE_CHOICES = [('1','1'),('2','2')]
+    assigned = SelectMultipleField('Assigned', choices=[AVAILABLE_CHOICES])
+    #categories=SelectMultipleField(u'Test me', choices=[("Abstract"), ("Art Deco")])
+    #, ("Art Nouveau"), ("Baroque"), ("Bahaus"), ("Classical Realism"), ("Conceptual")])
+
+
+#                "Cubism", "Digital", "Environmental", "Excessivism", "Expressionism", "Fantasy", "Figurative", "Fine Art", "Folk", "Futurism",
+ #               "Geometric", "Graffiti", "Gothic", "Hyperrealism", "Impressionism", "International", "Kitsch", "Land", "Metaphysical", 
+  #              "Minimalism", "Modernism", "Neoism", "Photorealism", "Pixel", ("Pop"), ("Realism"), ("Romanticism"), ("Surrealism")])
