@@ -45,3 +45,7 @@ class RegisterForm3(FlaskForm):
 #                "Cubism", "Digital", "Environmental", "Excessivism", "Expressionism", "Fantasy", "Figurative", "Fine Art", "Folk", "Futurism",
  #               "Geometric", "Graffiti", "Gothic", "Hyperrealism", "Impressionism", "International", "Kitsch", "Land", "Metaphysical", 
   #              "Minimalism", "Modernism", "Neoism", "Photorealism", "Pixel", ("Pop"), ("Realism"), ("Romanticism"), ("Surrealism")])
+
+class ItemDetails(FlaskForm):
+    name = StringField("Title", validators=[DataRequired(), Length(max = 75)])
+    category = 
