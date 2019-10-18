@@ -1,5 +1,8 @@
 # IFB207-Assignment3
 Abdul-THU-5P 4  Team members, Jackson, Justin, William
+Jackson Hall - N10504915
+Justin Hughes - N10206191
+Trần Vũ Nhất Nam - N10306234
 
 Do not redistribute these files, please these are for academic purposes and you may be faced with plagarism :D
 
