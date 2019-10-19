@@ -7,7 +7,7 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo
 
 #creates the login information
 class LoginForm(FlaskForm):
-    user_name=StringField("User Name", validators=[DataRequired('Enter user name')])
+    email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email")])
     password=PasswordField("Password", validators=[DataRequired('Enter password')])
     submit = SubmitField("Login")
     remember_me = BooleanField('Remember Me')
@@ -20,19 +20,22 @@ class RegisterForm1(FlaskForm):
     email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email")])
     
     #linking two fields - password should be equal to data entered in confirm
-    password=PasswordField("Password", validators=[DataRequired(),
-                  EqualTo('confirm', message="Passwords should match")])
-    confirm = PasswordField("Confirm Password")
-    #next (submit) button
-    next = SubmitField("Next")
-
-class RegisterForm2(FlaskForm):
+    password=PasswordField("Password", validators=[DataRequired(message=(u'That\'s not a valid email address.')),])
+                  
+    confirm = PasswordField("Confirm Password", validators=[ EqualTo(password, message="test")])
+       
     #avatar=FileField("Upload avatar", validators=[regexp(u'^[^/\\]\.jpg$'), regexp(u'^[^/\\]\.png$'), regexp(u'^[^/\\]\.jpeg$'), 
                 #regexp(u'^[^/\\]\.gif$')])
     # I need help with this I can't figure out how to make it work, if seller then allow bio else buyer
     #account_seller=BooleanField()
     #if account_seller = true
-    biography=TextAreaField("Bio", validators=[Length(max=1000, message="The length of the bio must be less than 1000 words.")])
+    biography=TextAreaField("About you", validators=[Length(max=1000, message="The length of the bio must be less than 1000 words.")])
+    
+    #next (submit) button
+    next = SubmitField("Next")
+
+class RegisterForm2(FlaskForm):
+    
     next = SubmitField("Next")
 
 class RegisterForm3(FlaskForm):
