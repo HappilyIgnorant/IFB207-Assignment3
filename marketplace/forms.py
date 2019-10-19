@@ -32,7 +32,7 @@ class RegisterForm2(FlaskForm):
     # I need help with this I can't figure out how to make it work, if seller then allow bio else buyer
     #account_seller=BooleanField()
     #if account_seller = true
-    biography=TextAreaField("Bio", validators=[Length(max=1000, message="The length of the bio must be less than 1000 words.")] )
+    biography=TextAreaField("Bio", validators=[Length(max=1000, message="The length of the bio must be less than 1000 words.")])
     next = SubmitField("Next")
 
 class RegisterForm3(FlaskForm):

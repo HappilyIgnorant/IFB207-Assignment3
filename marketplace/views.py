@@ -20,6 +20,13 @@ def login():
         return redirect('/')
     return render_template('login.html', title='Log In', form=form)
 
+@bp.route('/register')
+def register():
+     form1 = RegisterForm1()
+     form2 = RegisterForm2()
+     form3 = RegisterForm3()
+     return render_template("registration.html", title='Sign Up',  f1=form1, f2=form2, f3=form3)
+
 @bp.route('/item_create')
 def item_create():
      form = form
@@ -29,12 +36,7 @@ def item_create():
 def item_details():
      return render_template("item_details.html")
 
-@bp.route('/register')
-def register():
-     form1 = RegisterForm1()
-     form2 = RegisterForm2()
-     form3 = RegisterForm3()
-     return render_template("registration.html",  f1=form1, f2=form2, f3=form3)
+
 
      # if form.validate_on_submit():
      #      # Retrieve the information from form
