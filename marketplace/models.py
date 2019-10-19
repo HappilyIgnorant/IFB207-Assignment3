@@ -7,11 +7,11 @@ class User(db.Model):
 
     # Login Credentials
     email = db.Column(db.String(100), index=True, unique=True, nullable=False)
-    username = db.Column(db.String(100), index=True, unique=True, nullable=False)
     password_hash = db.Column(db.String(255), nullable=False)
 
     # Basic information
-    name = db.Column(db.String(100), nullable = False)
+    first_name = db.Column(db.String(100), nullable = False)
+    last_name = db.Column(db.String(100), nullable = False)
     profile = db.Column(db.String(10000), default = "N/A")
     favourites = db.Column(db.String(1000), default = "N/A")
     join_date = db.Column(db.DateTime, nullable = False)
