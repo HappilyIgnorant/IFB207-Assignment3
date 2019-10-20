@@ -18,6 +18,15 @@ pip install flask flask_bootstrap flask_sqlalchemy flask_login flask_wtf
 
 See below for a good video on how to setup and program this assignment in Flask 
 
+
 https://www.youtube.com/watch?v=K0vSCCAM2ss
+
+
+
+Creating the database...
+python.exe
+>>> from marketplace import db, create_app 
+>>> db.create_all(app=create_app())
+
 
 Good luck lads!

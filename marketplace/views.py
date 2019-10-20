@@ -11,21 +11,6 @@ bp = Blueprint('main', __name__)
 def index():
      return render_template("index.html")
 
-@bp.route('/login' , methods=['GET', 'POST'])
-def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        flash('Login requested for user {}, remember_me={}'.format(
-            form.user_name.data, form.remember_me.data))
-        return redirect('/')
-    return render_template('login.html', title='Log In', form=form)
-
-@bp.route('/register' ,methods=['GET', 'POST'])
-def register():
-     form1 = RegisterForm1()
-     
-     form3 = RegisterForm3()
-     return render_template("registration.html", title='Sign Up',  f1=form1, f3=form3)
 
 @bp.route('/item_create')
 def item_create():

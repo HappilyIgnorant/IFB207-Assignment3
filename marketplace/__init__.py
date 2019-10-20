@@ -30,6 +30,9 @@ def create_app():
     login_manager.login_view='auth.login'
     login_manager.init_app(app)
 
+    #@login_manager.user_loader
+    #def load_user(id)
+
     #create a user loader function takes userid and returns User
     #from .models import User  # importing here to avoid circular references
     #@login_manager.user_loader
@@ -42,7 +45,7 @@ def create_app():
     app.register_blueprint(views.bp)
 
     from . import auth
-    app.register_blueprint(auth.bp)
+    app.register_blueprint(auth.auth)
     
     return app
 

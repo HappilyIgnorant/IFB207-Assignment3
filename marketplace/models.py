@@ -18,9 +18,9 @@ class User(db.Model):
     is_seller = db.Column(db.Boolean, default = False)
 
     # Relation to other tables
-    artworks = db.relationship('Artwork', backref = 'user')
-    bids = db.relationship('Bid', backref = 'user')
-    purchases = db.relationship('Purchase', backref = 'user')
+    #user_artworks = db.relationship('Artwork', back_populates = 'users')
+    #user_bids = db.relationship('Bid', back_populates = 'users')
+    #user_purchases = db.relationship('Purchase', back_populates = 'users')
     
 class Artwork(db.Model):
     __tablename__ = 'artworks'
@@ -36,8 +36,8 @@ class Artwork(db.Model):
     availability = db.Column(db.Boolean, default = True)
 
     # Relation to other tables
-    bids = db.relationship('Bid', backref = 'artwork')
-    purchase = db.relationship('Purchase', backref = 'artwork')
+    #artwork_bids = db.relationship('Bid', back_populates = 'artworks')
+    #artwork_purchase = db.relationship('Purchase', back_populates = 'artworks')
 
 class Bid(db.Model):
     __tablename__ = "bids"
@@ -47,6 +47,8 @@ class Bid(db.Model):
     bidder = db.Column(db.Integer, db.ForeignKey('users.id'))
     seller = db.Column(db.Integer, db.ForeignKey('users.id'))
     date = db.Column(db.DateTime, nullable = False)
+
+    
 
 class Purchase(db.Model):
     __tablename__ = "purchases"
