@@ -34,7 +34,7 @@
                 {% if current_user.is_authenticated %}
                 <div class="col-4 text-right loginblock">
                         <i class="fas fa-user "></i>
-                        <a href="#" id="li_link" class="pr-1">Username</a>
+                        <a href="#" id="li_link" class="pr-1">{{current_user.first_name.upper()}} {{current_user.last_name.upper()}}</a>
                         <a href="{{ url_for('auth.logout') }}">LOG OUT</a>
                     </div>
                 {% else %}
