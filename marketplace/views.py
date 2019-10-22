@@ -39,18 +39,41 @@ def item_manage():
      return render_template("item_manage.html")
 
 
+ #Menu links
+ # These are routes for the menu Links  
 
-     # if form.validate_on_submit():
-     #      # Retrieve the information from form
-     #      user_name = form1.user_name.data
-     #      first_name = form1.first_name.data
-     #      last_name = form1.last_name.data
-     #      email = form1.email.data
-     #      password_hash = generate_password_hash(form1.password.data)
-          
+@bp.route('/artists')
+def artists():
+     return render_template("_artists.html")
 
-     #      # Store the information to the database
-     #      new_user = User() ###### need to add sth
+@bp.route('/auctions')
+def auctions():
+     return render_template("_auctions.html")
+
+@bp.route('/fineart')
+def fineart():
+     return render_template("_fineart.html")
+
+@bp.route('/modernart')
+def modernart():
+     return render_template("_modernart.html")
+@bp.route('/sculpture')
+def sculpture():
+     return render_template("_sculpture.html")
+@bp.route('/abstract')
+def abstract():
+     return render_template("_abstract.html")
+@bp.route('/commission')
+def commission():
+     return render_template("_commision.html")
+
+@bp.route('/gallery')
+def gallery():
+     return render_template("_gallery.html")
 
 
+
+@bp.route('/search')
+def search():
+     return render_template("results.html")
 
