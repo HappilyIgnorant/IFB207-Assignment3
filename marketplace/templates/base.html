@@ -35,7 +35,7 @@
                 <div class="col-4 text-right loginblock">
                         <i class="fas fa-user "></i>
                         <a href="#" id="li_link" class="pr-1">Username</a>
-                        <a href="#">LOG OUT</a>
+                        <a href="{{ url_for('auth.logout') }}">LOG OUT</a>
                     </div>
                 {% else %}
                 <div class="col-4 text-right loginblock">

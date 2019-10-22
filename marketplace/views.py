@@ -3,6 +3,7 @@ from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm, ItemD
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from .models import User, Artwork, Bid, Purchase
+from flask_login import login_required
 
 bp = Blueprint('main', __name__)
 
@@ -20,6 +21,12 @@ def item_create():
 @bp.route('/item_details')
 def item_details():
      return render_template("item_details.html")
+
+@bp.route('/item_manage')
+@login_required
+def item_manage():
+
+     return render_template("item_manage.html")
 
 
 

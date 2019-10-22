@@ -14,12 +14,29 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login' , methods=['GET', 'POST'])
 def login():
-    form = LoginForm()
-    if form.validate_on_submit():
-        flash('Login requested for user {}, remember_me={}'.format(
-            form.user_name.data, form.remember_me.data))
-        return redirect('/')
-    return render_template('login.html', title='Log In', form=form)
+    if request.method=='GET':
+        form = LoginForm()
+        if form.validate_on_submit():
+            flash('Login requested for user {}, remember_me={}'.format(
+                form.user_name.data, form.remember_me.data))
+            return redirect('/')
+        return render_template('login.html', title='Log In', form=form)
+    else:
+        email=request.form.get('email_id')
+        password=request.form.get('password')
+        remember = True if request.form.get('remember_me') else False
+
+        user = User.query.filter_by(email=email).first()
+        print(user)
+        print(User.query.filter_by(email=email).first())
+        if not user and not check_password_hash(user.password_hash, password):
+            flash('Please check your login details and try again.')
+            print("fail")
+            return redirect(url_for('auth.login'))
+            
+
+        login_user(user, remember=remember)
+        return redirect(url_for('main.item_manage'))
 
 
 @auth.route('/register' ,methods=['GET', 'POST'])
@@ -55,6 +72,12 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        return render_template("item_details.html")
+        return render_template("item_manage.html")
         #redirect to somewhere
 
+
+@auth.route('/logout')
+@login_required
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))
