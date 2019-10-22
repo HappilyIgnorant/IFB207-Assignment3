@@ -1,10 +1,9 @@
-from flask import Blueprint, render_template, flash, redirect
+from flask import Blueprint, render_template, flash, redirect, session
 from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm, ItemDetails
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from .models import User, Artwork, Bid, Purchase
 from flask_login import login_required
-
 bp = Blueprint('main', __name__)
 
 
@@ -21,7 +20,18 @@ def item_create():
 @bp.route('/item_details')
 def item_details():
      return render_template("item_details.html")
+@bp.route('/sell')
+def sell():
+     seller=True
+     session['seller'] = True
+     return render_template("item_manage.html")
 
+@bp.route('/buy')
+def buy():
+     seller=False
+     session['seller'] = False
+     return render_template("index.html")
+     
 @bp.route('/item_manage')
 @login_required
 def item_manage():

@@ -32,7 +32,10 @@
 
                 </div>
                 {% if current_user.is_authenticated %}
+                
                 <div class="col-4 text-right loginblock">
+                        <a href="{{ url_for('main.sell') }}">SELL</a> |
+                        <a href="{{ url_for('main.buy') }}" style="padding-right:15px;">BUY</a>
                         <i class="fas fa-user "></i>
                         <a href="#" id="li_link" class="pr-1">{{current_user.first_name.upper()}} {{current_user.last_name.upper()}}</a>
                         <a href="{{ url_for('auth.logout') }}">LOG OUT</a>
@@ -53,16 +56,25 @@
                 </button>
                 <div class="collapse navbar-collapse navbar-custom" id="navbarSupportedContent">
                     <ul class="nav navbar-nav mx-auto">
-                        <li class="nav-item highlight"><a class="nav-link py-0" href="#">ARTISTS</a></li>
-                        <li class="nav-item highlight"><a class="nav-link py-0" href="#">AUCTIONS</a></li>
-                        <li class="nav-item highlight"><a class="nav-link py-0" href="#">GALLERY</a></li><div class="separator">|</div>
-                        <li class="nav-item"><a class="nav-link py-0" href="#">FINE ART</a></li>
-                        <li class="nav-item"><a class="nav-link py-0" href="#">MODERN ART</a></li>
-                        <li class="nav-item"><a class="nav-link py-0" href="#">SCULPTURE</a></li>
-                        <li class="nav-item"><a class="nav-link py-0" href="#">ABSTRACT</a></li>
-                        <li class="nav-item"><a class="nav-link py-0" href="#">COMMISSION WORK</a></li>
+                        {% if session['seller'] %}
+                            <li class="nav-item highlight"><a class="nav-link py-0" href="item_manage.html"><b>AUCTIONS</b></a></li>
+                            <li class="nav-item highlight"><a class="nav-link py-0" href="#">GALLERY</a></li><div class="separator">|</div>
+                            <li class="nav-item"><a class="nav-link py-0" href="#">INVENTORY</a></li>
+                            <li class="nav-item"><a class="nav-link py-0" href="#">PRICING</a></li>
+                            <li class="nav-item"><a class="nav-link py-0" href="#">ORDERS</a></li>
+                            <li class="nav-item"><a class="nav-link py-0" href="#">FINANCE</a></li>
+                            <li class="nav-item"><a class="nav-link py-0" href="#">OUR SERVICES</a></li>
+                        {% else %}
+                            <li class="nav-item highlight"><a class="nav-link py-0" href="#">ARTISTS</a></li>
+                            <li class="nav-item highlight"><a class="nav-link py-0" href="#">AUCTIONS</a></li>
+                            <li class="nav-item highlight"><a class="nav-link py-0" href="#">GALLERY</a></li><div class="separator">|</div>
+                            <li class="nav-item"><a class="nav-link py-0" href="#">FINE ART</a></li>
+                            <li class="nav-item"><a class="nav-link py-0" href="#">MODERN ART</a></li>
+                            <li class="nav-item"><a class="nav-link py-0" href="#">SCULPTURE</a></li>
+                            <li class="nav-item"><a class="nav-link py-0" href="#">ABSTRACT</a></li>
+                            <li class="nav-item"><a class="nav-link py-0" href="#">COMMISSION WORK</a></li>
+                        {% endif %}
                     </ul>
-
                 </div>
             </nav>
             <!-- Main content -->

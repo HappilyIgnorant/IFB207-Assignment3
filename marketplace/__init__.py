@@ -6,6 +6,7 @@ from flask_login import LoginManager
 
 
 db = SQLAlchemy()
+global seller
 from .models import User, Artwork, Bid, Purchase
 
 # create a function that creates a web application
@@ -19,6 +20,8 @@ def create_app():
     
     #initialize db with flask app
     db.init_app(app)
+
+    seller=False
 
     bootstrap = Bootstrap(app)
     
