@@ -75,5 +75,9 @@ def gallery():
 
 @bp.route('/search')
 def search():
-     return render_template("results.html")
+     titles = ["1", "2", "3", "4", "5", "6"]
+     descriptions = ["number 1", "number 2", "number 3", "number 4", "number 5", "number 6"]
+     times = [50, 30, 40, 12, 10, 30]
+     num_results = len(titles)
+     return render_template("results.html", num_results = num_results, titles = titles, descriptions = descriptions, times = times)
 
