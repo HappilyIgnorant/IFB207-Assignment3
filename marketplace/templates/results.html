@@ -14,20 +14,24 @@
 
 <div class="card-deck">
     <div class="row">
-    {% for artwork in artworks %}
+    {% for i in range(num_results) %}
     {% if i % 3 == 0 %}
     </div>
     <div class="row">
     {% endif %}
         <div class="card mb-3 col-md-4">
-            <img src="{{artwork.image_address}}" class="card-img-top" alt="...">
+            <img src="{{artworks[i].image_address}}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{artwork.name}}</h5>
-                <p class="card-text">{{artwork.seller_id}}</p>
-                <p class="card-text">${{artwork.price}}</p>
-                <p class="card-text">${{artwork.availability}}</p>
-                <p class="card-text">${{artwork.description}}</p>
-                <p class="card-text"><small class="text-muted">{{artwork.price}}</small></p>
+                <h5 class="card-title">{{artworks[i].name}}</h5>
+                <p class="card-text">{{artworks[i].seller_id}}</p>
+                <p class="card-text">${{artworks[i].price}}</p>
+                {% if artworks[i].availability == True %}
+                <p class="card-text">Available</p>
+                {% else %}
+                <p class="card-text">SOLD</p>
+                {% endif %}
+                <p class="card-text">{{artworks[i].description}}</p>
+                <p class="card-text"><small class="text-muted">{{artworks[i].create_date}}</small></p>
             </div>
         </div>
     {% endfor %}
