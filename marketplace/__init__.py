@@ -4,7 +4,6 @@ from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 
-
 db = SQLAlchemy()
 global seller
 from .models import User, Artwork, Bid, Purchase
@@ -15,6 +14,8 @@ def create_app():
     app = Flask(__name__)  # this is the name of the module/package that is calling this app
     #set the app configuration data 
     app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///marketplace.sqlite'
+    app.config['UPLOAD_FOLDER'] = '/static/img/'
+
     app.debug=True
     app.secret_key='utroutoru'
     

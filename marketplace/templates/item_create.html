@@ -51,7 +51,7 @@
 <!-- END NAVBAR this appears on every page -->
 
 <div class="container-fluid body-container">
-<form class="item-form">
+<form class="item-form" method="POST">
     <div class="row">
         <div class="col-md-7">                   
             <div class="form-group row">
@@ -65,24 +65,17 @@
             <div class="form-group row">
                 <label for="colFormTitle" class="col-sm-2 col-form-label">Category</label>
                 <div class="col-sm-10">
-                    <select class="form-control">
-                        <option selected>Oil Painting</option>
-                        <option value="1">Print</option>
-                        <option value="2">Sculpture</option>
-                        <option value="3">Watercolor</option>
-                    </select>
+                            {{form.category(class = "form-control")}}
                 </div>
             </div>
             <div class="form-group row">
-                <label for="colFormPayment" class="col-sm-2 col-form-label">Payment</label>
+                <label for="colFormPayment" class="col-sm-2 col-form-label">Price</label>
                 <div class="col-sm-4">
-                    <input type="text" class="form-control" id="colFormPayment" placeholder="$ - Value in AUD">
+                    {{form.price(class="form-control", id="colFormPayment", placeholder="$ - Value in AUD")}}
                 </div>
                 <div class="col-sm-4">
                     <label class="col-sm-12 col-form-label">Options</label>
-                    <label class="radio-inline "><input type="radio" name="optradio" checked>Buy</label>
-                    <label class="radio-inline "><input type="radio" name="optradio">Auction</label>
-                    <label class="radio-inline "><input type="radio" name="optradio">Buy/Auction</label>
+                    {{form.options(class="radio-inline ")}}
                 </div>
             </div>
             <div class="form-group row">
@@ -105,7 +98,11 @@
                 </div>
                 <div class="container-fluid">
                     <div class="row mt-2">
-                        <div class="col-3 campic">{{ wtf.form_field(form.image1, src="../static/img/activecam.png") }}</div>
+
+                        <!-- <div class="col-3 campic">{{ wtf.form_field(form.image1, src="../static/img/activecam.png") }}</div> -->
+                        {{form.image1(enctype="multipart/form-data")}}
+
+                        
                         <div class="col-3 campic">{{ wtf.form_field(form.image2) }}</div>
                         <div class="col-3 campic">{{ wtf.form_field(form.image3) }}</div>
                         <div class="col-3 campic">{{ wtf.form_field(form.image4) }}</div>

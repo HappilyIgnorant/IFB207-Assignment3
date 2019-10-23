@@ -3,6 +3,8 @@ from flask_wtf import FlaskForm
 from wtforms import Form, SelectField
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, FileField, SelectMultipleField, BooleanField, RadioField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
+from flask_wtf.file import FileRequired
+
 
 #creates the login information
 class LoginForm(FlaskForm):
@@ -48,15 +50,16 @@ class RegisterForm3(FlaskForm):
  #               "Geometric", "Graffiti", "Gothic", "Hyperrealism", "Impressionism", "International", "Kitsch", "Land", "Metaphysical", 
   #              "Minimalism", "Modernism", "Neoism", "Photorealism", "Pixel", ("Pop"), ("Realism"), ("Romanticism"), ("Surrealism")])
 
+CATEGORY_CHOICES = [('Oil Painting','Oil Painting'), ('Print','Print'), ('Sculpture', 'Sculpture'), ('Watercolor', 'Watercolor')]
 class ItemDetails(FlaskForm):
-    AVAILABLE_CHOICES = [('1','1'), ('2','2')]
+    
     #selling_options = [("1", "Buy"), ("2", "Auction"), ("3", "Buy/Auction")]
     name = StringField("", validators=[DataRequired(), Length(max = 75)])
-    category = SelectMultipleField("Categories", choices=[AVAILABLE_CHOICES])
-    payment = IntegerField("$ - Value in AUD", validators=[DataRequired()])
-    options = RadioField('Label', choices=[('value1','Auction'),('value2','Buy'),('value3', 'Auction/Buy')])
+    category = SelectField("Categories", choices=CATEGORY_CHOICES)
+    price = IntegerField("$ - Value in AUD", validators=[DataRequired()])
+    options = RadioField('Label', choices=[('Auction','Auction'),('Buy','Buy'),('Auction/Buy', 'Auction/Buy')], default='Auction')
     description = TextAreaField("Description", validators=[DataRequired(), Length(max = 5000)])
-    image1 = FileField("Image File")
+    image1 = FileField("Image File", validators=[FileRequired()])
     image2 = FileField("Image File")
     image3 = FileField("Image File")
     image4 = FileField("Image File")

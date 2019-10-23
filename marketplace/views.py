@@ -1,10 +1,14 @@
-from flask import Blueprint, render_template, flash, redirect, session
+from flask import Blueprint, render_template, flash, redirect, session, request
 from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm, ItemDetails
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug import secure_filename
 from . import db
 from .models import User, Artwork, Bid, Purchase
 from flask_login import login_required
 from flask_sqlalchemy import SQLAlchemy
+import os
+
+
 #import flask_whooshalchemy
 
 bp = Blueprint('main', __name__)
@@ -13,15 +17,29 @@ bp = Blueprint('main', __name__)
 def index():
      return render_template("index.html")
 
-
-@bp.route('/item_create')
+@bp.route('/item_create', methods=['GET', 'POST'])
+# @login_required
 def item_create():
-     # if request.method == 'GET':
-     form = ItemDetails()
-     return render_template("item_create.html", form = form)
-     # else:
-     #      # title = 
-#      
+     if request.method=='GET':
+          form = ItemDetails()
+          return render_template("item_create.html", form = form)
+     else:
+          form = ItemDetails()
+
+          title = request.form.get('name')
+          category = request.form.get('category')
+          price = request.form.get('price')
+          option = request.form.get('options')
+          description = request.form.get('description')
+          print(title, category, price, option, description)
+
+          # #image uploading
+          # image1 = secure_filename(form.image1.filename)
+          # print(image1)
+          
+          
+          return render_template("item_create.html", form = form)
+     
      
 @bp.route('/item_details')
 def item_details():
@@ -80,7 +98,7 @@ def gallery():
 
 @bp.route('/results')
 def search_results(search):
-     artworks = Artwork.query.woosh_search(request.args.get('query'))).all
+     artworks = Artwork.query.woosh_search(request.args.get('query')).all
      num_results = Artwork.query.filter_by(category = 'Realism').count()
      return render_template("results.html", artworks = artworks, num_results = num_results)
      
