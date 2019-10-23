@@ -29,7 +29,10 @@ def login():
         user = User.query.filter_by(email=email).first()
         print(user)
         print(User.query.filter_by(email=email).first())
-        if not user and not check_password_hash(user.password_hash, password):
+        if not user:
+            flash('Please check your login details and try again.')
+            return redirect(url_for('auth.login'))
+        elif not check_password_hash(user.password_hash, password):
             flash('Please check your login details and try again.')
             print("fail")
             return redirect(url_for('auth.login'))
@@ -81,3 +84,5 @@ def register():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+

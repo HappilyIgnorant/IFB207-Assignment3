@@ -112,12 +112,12 @@
                 <div class="col-md-2" id="media-thumbnail">
                     <ul class="clearfix">
                         <li class="media-thumbnail">
-                            <img href="#" src="../static/img/product1.jpg" alt="...">
+                            <img href="#" src="{{artwork.image_address}}" alt="..." class="img-fluid">
                         </li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 d-flex justify-content-center" style="padding-bottom:25px">
-                    <img href="#" src="../static/img/product1.jpg" alt="..." class="center-product ">
+                    <img href="#" src="{{artwork.image_address}}" alt="..." class="center-product img-fluid ">
                 </div>
                 <div class="col-md-6">
                     <div class="row">
@@ -132,14 +132,14 @@
                                     <dt class="col-12">Artist Name</dt>
                                     <dd class="col-12">Alex Smith</dd>
                                     <dt class="col-12">Art Title</dt>
-                                    <dd class="col-12">xxxxxxxxxxxxxxxxxxxxxx</dd>
+                                    <dd class="col-12">{{artwork.name}}</dd>
                                     <dt class="col-12">Price</dt>
-                                    <dd class="col-12">AUD xxx.xx</dd>
+                                    <dd class="col-12">AUD ${{artwork.price}}</dd>
                                     <dt class="col-12">Genre</dt>
-                                    <dd class="col-12"><p style="color:orange;">Realism</p></dd>
-                                    <dt class="col-12">Dimensions</dt>
+                                    <dd class="col-12"><p style="color:orange;">{{artwork.category}}</p></dd>
+                                    <!--<dt class="col-12">Dimensions</dt>
                                     <dd class="col-6">H:xxxx</dd>
-                                    <dd class="col-6">W:xxxx</dd>
+                                    <dd class="col-6">W:xxxx</dd>-->
                                 </dl>
                             </div>
                             <div class="col-md-6 ">                            
@@ -159,7 +159,7 @@
                             <div class="col-md-12 border-top" style="padding-bottom:50px">
                                 <h2>Artwork Description</h2>
                                 <p>
-                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur auctor sem vel dui ultrices pharetra. Sed luctus, dolor vitae aliquam dictum, nisl lacus sagittis diam, at efficitur dui magna consectetur enim. Mauris semper elementum nisl, id efficitur mauris consequat ac. Integer tempor viverra risus, sit amet varius tortor consectetur non. Aliquam sed lacus sit amet magna consectetur gravida in quis leo. Sed pellentesque odio eu eros pellentesque, id tincidunt erat venenatis. Ut accumsan urna id augue varius, non cursus magna gravida. Proin quis accumsan risus, sit amet convallis ex. Proin odio sapien, feugiat porttitor turpis id, consectetur malesuada urna. Maecenas porttitor dignissim placerat. Nam sagittis congue velit, non malesuada augue condimentum feugiat. Aenean nec lorem malesuada, mattis felis non, gravida sapien. Phasellus facilisis non odio sed lobortis. Maecenas nisl ex, rhoncus quis neque et, consectetur blandit nunc. Nulla ornare et est ac molestie. Integer eu egestas dui, sed vestibulum eros.
+                                    {{artwork.description}}
                                 </p>
                             </div>
                         </div>

@@ -1,28 +1,33 @@
 from flask import Blueprint, render_template, flash, redirect, session, request
 from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm, ItemDetails
 from werkzeug.security import generate_password_hash, check_password_hash
-from werkzeug import secure_filename
+from werkzeug.utils import secure_filename
 from . import db
 from .models import User, Artwork, Bid, Purchase
 from flask_login import login_required
 from flask_sqlalchemy import SQLAlchemy
 import os
+from . import create_app
 
 
 #import flask_whooshalchemy
 
 bp = Blueprint('main', __name__)
 
+
 @bp.route('/')
 def index():
      return render_template("index.html")
 
 @bp.route('/item_create', methods=['GET', 'POST'])
-# @login_required
+@login_required
 def item_create():
+     
      if request.method=='GET':
           form = ItemDetails()
+          print(load_user(session.get_id()))
           return render_template("item_create.html", form = form)
+          
      else:
           form = ItemDetails()
 
@@ -32,18 +37,25 @@ def item_create():
           option = request.form.get('options')
           description = request.form.get('description')
           print(title, category, price, option, description)
-
-          # #image uploading
-          # image1 = secure_filename(form.image1.filename)
-          # print(image1)
           
+
+          #Image uploading
+          image_forms = ['image1', 'image2', 'image3', 'image4', 'image5', 'image6', 'image7', 'image8', 'image9', 'image10']
+          for i in image_forms:
+               f = request.files[i]
+               if f:
+                    filename = secure_filename(f.filename)
+                    f.save(os.path.join(create_app().config['UPLOAD_FOLDER'], filename))
+                    print('test')
+               
           
           return render_template("item_create.html", form = form)
      
      
 @bp.route('/item_details')
 def item_details():
-     return render_template("item_details.html")
+     artwork = Artwork.query.filter_by(id = 2).first()
+     return render_template("item_details.html", artwork = artwork)
 
 @bp.route('/sell')
 def sell():

@@ -4,54 +4,8 @@
 
 {% block content %}
 
-<div id="pageheader" class="container-fluid fixed-top bg-white shadow" style="padding-bottom:1%">
-    <div class="row my-2">
-        <div class="col-3">
-            <!--<a href="#" class="float-left mr-3"><img src="https://via.placeholder.com/40x30"></a>-->
-            <!--<h4 class="companyName"><a href="#" class="">VIRTUOSITY</a></h4>-->
-            <a href="index.html"><div class="companyLogoSeller"></div></a>
-        </div>
-        <div class="col-4">
-            <div class="input-group md-form form-sm form-2 pl-0 searchbox">
-                <input class="form-control my-0 py-1 red-border" id="search-text" type="text" placeholder="Search for Art, Artists or ongoing Auctions" aria-label="Search">
-                <div class="input-group-append">
-                    <span class="input-group-text red lighten-3"><i class="fas fa-search text-grey" aria-hidden="true" id="btnSearch"></i></span>
-                </div>
-            </div>
-
-        </div>
-        <div class="col-4 text-right loginblock">
-            <i class="fas fa-user "></i>
-            <a href="#" id="li_link" class="pr-1">USERNAME</a>
-            <a href="index.html">LOG OUT</a>
-        </div>
-    </div>
-    <!--Navigation Menu-->
-    <nav class="navbar navbar-expand-lg navbar-light borders navbar-custom hidenav">
-        <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse navbar-custom" id="navbarSupportedContent">
-            <ul class="nav navbar-nav mx-auto">
-                <li class="nav-item highlight"><a class="nav-link py-0" href="#">SELLER PROFILE</a></li>
-                <li class="nav-item highlight"><a class="nav-link py-0" href="item_manage.html"><b>AUCTIONS</b></a></li>
-                <li class="nav-item highlight"><a class="nav-link py-0" href="#">GALLERY</a></li><div class="separator">|</div>
-                <li class="nav-item"><a class="nav-link py-0" href="#">INVENTORY</a></li>
-                <li class="nav-item"><a class="nav-link py-0" href="#">PRICING</a></li>
-                <li class="nav-item"><a class="nav-link py-0" href="#">ORDERS</a></li>
-                <li class="nav-item"><a class="nav-link py-0" href="#">FINANCE</a></li>
-                <li class="nav-item"><a class="nav-link py-0" href="#">OUR SERVICES</a></li>
-            </ul>
-
-        </div>
-    </nav>
-    <!-- Main content -->
-</div>
-
-<!-- END NAVBAR this appears on every page -->
-
 <div class="container-fluid body-container">
-<form class="item-form" method="POST">
+<form class="item-form" method="POST" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-7">                   
             <div class="form-group row">
@@ -97,27 +51,25 @@
                     from various angles for the best representation of your item.                      
                 </div>
                 <div class="container-fluid">
-                    <div class="row mt-2">
-
-                        <!-- <div class="col-3 campic">{{ wtf.form_field(form.image1, src="../static/img/activecam.png") }}</div> -->
-                        {{form.image1(enctype="multipart/form-data")}}
-
-                        
-                        <div class="col-3 campic">{{ wtf.form_field(form.image2) }}</div>
-                        <div class="col-3 campic">{{ wtf.form_field(form.image3) }}</div>
-                        <div class="col-3 campic">{{ wtf.form_field(form.image4) }}</div>
+                    <div class="row mt-2 py-3">
+                        {{ form.image1(class="col-6 campic") }}
+                        {{ form.image2(class="col-6 campic") }}
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-3 campic">{{ wtf.form_field(form.image5) }}</div>
-                        <div class="col-3 campic">{{ wtf.form_field(form.image6) }}</div>
-                        <div class="col-3 campic">{{ wtf.form_field(form.image7) }}</div>
-                        <div class="col-3 campic">{{ wtf.form_field(form.image8) }}</div>
+                    <div class="row mt-2 py-3">
+                        {{ form.image3(class="col-6 campic") }}
+                        {{ form.image4(class="col-6 campic") }}
                     </div>
-                    <div class="row mt-2">
-                        <div class="col-3 campic">{{ wtf.form_field(form.image9) }}</div>
-                        <div class="col-3 campic">{{ wtf.form_field(form.image10) }}</div>
-                        <div class="col-3 campic">{{ wtf.form_field(form.image11) }}</div>
-                        <div class="col-3 campic"><img src="../static/img/activecam.png"></div>
+                    <div class="row mt-2 py-3">
+                        {{ form.image5(class="col-6 campic") }}
+                        {{ form.image6(class="col-6 campic") }}
+                    </div>
+                    <div class="row mt-2 py-3">
+                        {{ form.image7(class="col-6 campic") }}
+                        {{ form.image8(class="col-6 campic") }}
+                    </div>
+                    <div class="row mt-2 py-3">
+                        {{ form.image9(class="col-6 campic") }}
+                        {{ form.image10(class="col-6 campic") }}
                     </div>
 
                 </div>
@@ -140,26 +92,7 @@
 
 
 
-<!-- Footer -->
-<footer class="page-footer font-small unique-color-dark pt-4">
-<!-- Footer Elements -->
-<div class="container">
-    <!-- Call to action -->
-    <ul class="list-unstyled list-inline text-center py-2">
-        <li class="list-inline-item">
-            <button class="btn btn-outline-light">Register for free</button>
-        </li>
-        <li class="list-inline-item">
-            <a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>
-        </li>
-    </ul>
-    <!-- Call to action -->
-</div>
-<!-- Footer Elements -->
-<!-- Copyright -->
-<div class="footer-copyright text-center py-3">© 2018 Copyright:
-    <a href="https://virtuosity.com">Virtuosity.com</a>
-</div>
+
 
 
 
