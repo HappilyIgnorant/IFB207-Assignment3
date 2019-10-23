@@ -75,5 +75,6 @@ def gallery():
 
 @bp.route('/search')
 def search():
-     return render_template("results.html")
+     artworks = Artwork.query.filter_by(id="1")
+     return render_template("results.html", artworks = artworks)
 

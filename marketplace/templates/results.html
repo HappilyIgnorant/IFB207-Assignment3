@@ -1,0 +1,37 @@
+{% import "bootstrap/wtf.html" as wtf %}
+{% extends 'base.html' %}
+{% block content %}
+
+<head>
+    <style>
+        body {
+            padding-top: 20vh;
+        }
+    </style>
+</head>
+
+<H1>RESULTS</H1>
+
+<div class="card-deck">
+    <div class="row">
+    {% for artwork in artworks %}
+    {% if i % 3 == 0 %}
+    </div>
+    <div class="row">
+    {% endif %}
+        <div class="card mb-3 col-md-4">
+            <img src="{{artwork.image_address}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">{{artwork.name}}</h5>
+                <p class="card-text">{{artwork.seller_id}}</p>
+                <p class="card-text">${{artwork.price}}</p>
+                <p class="card-text">${{artwork.availability}}</p>
+                <p class="card-text">${{artwork.description}}</p>
+                <p class="card-text"><small class="text-muted">{{artwork.price}}</small></p>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
