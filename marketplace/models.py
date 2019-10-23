@@ -28,7 +28,7 @@ class Artwork(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     image_address = db.Column(db.String(500), nullable = False)
-    create_date = db.Column(db.DateTime, nullable = False)
+    create_date = db.Column(db.String(10), nullable = False)
 
     name = db.Column(db.String(1000), nullable = False)
     category = db.Column(db.String(300), nullable = False)
