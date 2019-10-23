@@ -23,7 +23,7 @@ class User(db.Model, UserMixin):
     #user_bids = db.relationship('Bid', back_populates = 'users')
     #user_purchases = db.relationship('Purchase', back_populates = 'users')
     
-class Artwork(db.Model):
+class Artwork(db.Model, UserMixin):
     __tablename__ = 'artworks'
     id = db.Column(db.Integer, primary_key=True)
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'))

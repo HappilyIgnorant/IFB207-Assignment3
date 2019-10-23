@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿{% import "bootstrap/wtf.html" as wtf %}
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" class="">
@@ -129,6 +130,11 @@
                         
                             <div class="col-md-6" style="line-height:1;">
                                 <dl>
+                                    {% if artwork.availability == True %}
+                                    <dt class="col-12" style="color:green;"">AVAILABLE</dt>
+                                    {% else %}
+                                    <dt class="col-12" style="color:red">SOLD</dt>
+                                    {% endif %}
                                     <dt class="col-12">Artist Name</dt>
                                     <dd class="col-12">Alex Smith</dd>
                                     <dt class="col-12">Art Title</dt>
@@ -150,8 +156,7 @@
                                         <button class="btn btn-secondary" style="width:100px" type="button">Bid</button>
                                     </div>
                                 </div>
-                                <div><b>Estimated Value:</b>AUDxxx-AUDxxx</div>
-                                <div><b>Lastest Bid Value:</b>AUDxxx-AUDxxx</div>
+                                <div><b>Latest Bid Value:</b>AUDxxx-AUDxxx</div>
                                 <div><b>Sale Date</b>xx/xx/xx</div>
                             </div>
                         

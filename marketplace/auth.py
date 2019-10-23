@@ -11,7 +11,6 @@ import datetime
 #create a blueprint
 auth = Blueprint('auth', __name__)
 
-
 @auth.route('/login' , methods=['GET', 'POST'])
 def login():
     if request.method=='GET':
@@ -36,10 +35,10 @@ def login():
             flash('Please check your login details and try again.')
             print("fail")
             return redirect(url_for('auth.login'))
-            
-
+        
         login_user(user, remember=remember)
         return redirect(url_for('main.item_manage'))
+
 
 
 @auth.route('/register' ,methods=['GET', 'POST'])

@@ -8,6 +8,7 @@ from flask_login import login_required
 from flask_sqlalchemy import SQLAlchemy
 import os
 from . import create_app
+import datetime
 
 
 #import flask_whooshalchemy
@@ -17,16 +18,16 @@ bp = Blueprint('main', __name__)
 
 @bp.route('/')
 def index():
-     return render_template("index.html")
+     artwork = Artwork.query.all()
+     return render_template("index.html", artwork = artwork)
 
 @bp.route('/item_create', methods=['GET', 'POST'])
 @login_required
 def item_create():
-     
      if request.method=='GET':
           form = ItemDetails()
-          print(load_user(session.get_id()))
           return render_template("item_create.html", form = form)
+          
           
      else:
           form = ItemDetails()
@@ -38,7 +39,7 @@ def item_create():
           description = request.form.get('description')
           print(title, category, price, option, description)
           
-
+          addresses = ""
           #Image uploading
           image_forms = ['image1', 'image2', 'image3', 'image4', 'image5', 'image6', 'image7', 'image8', 'image9', 'image10']
           for i in image_forms:
@@ -46,8 +47,14 @@ def item_create():
                if f:
                     filename = secure_filename(f.filename)
                     f.save(os.path.join(create_app().config['UPLOAD_FOLDER'], filename))
-                    print('test')
-               
+                    if addresses == "":
+                         addresses = filename
+                    else:
+                         addresses += "," + filename
+     
+          # new_item = Artwork(seller_id = , image_address = addresses, create_date = datetime.datetime.now(), name = title, category = category, price = price, description = description, availability = True)
+          # db.session.add(new_item)
+          # db.session.commit()
           
           return render_template("item_create.html", form = form)
      

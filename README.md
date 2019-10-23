@@ -32,3 +32,9 @@ Adding search functionality...
 pip install flask_whooshalchemy
 
 Good luck lads!
+
+Images references
+https://live.staticflickr.com/957/42233947392_bbc517e0ce_b.jpg
+https://live.staticflickr.com/3775/9285547594_1dbc0fefb6.jpg
+
+https://artloversaustralia.com.au/shop/if-you-go-down-to-the-woods-today/
