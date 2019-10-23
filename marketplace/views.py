@@ -71,10 +71,8 @@ def commission():
 def gallery():
      return render_template("_gallery.html")
 
-
-
 @bp.route('/search')
 def search():
-     artworks = Artwork.query.filter_by(id="1")
-     return render_template("results.html", artworks = artworks)
-
+     artworks = Artwork.query.filter_by(category = 'Realism')
+     num_results = Artwork.query.filter_by(category = 'Realism').count()
+     return render_template("results.html", artworks = artworks, num_results = num_results)
