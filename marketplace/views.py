@@ -4,8 +4,10 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from .models import User, Artwork, Bid, Purchase
 from flask_login import login_required
-bp = Blueprint('main', __name__)
+from flask_sqlalchemy import SQLAlchemy
+#import flask_whooshalchemy
 
+bp = Blueprint('main', __name__)
 
 @bp.route('/')
 def index():
@@ -14,12 +16,17 @@ def index():
 
 @bp.route('/item_create')
 def item_create():
-     form = form
+     # if request.method == 'GET':
+     form = ItemDetails()
      return render_template("item_create.html", form = form)
+     # else:
+     #      # title = 
+#      
      
 @bp.route('/item_details')
 def item_details():
      return render_template("item_details.html")
+
 @bp.route('/sell')
 def sell():
      seller=True
@@ -71,8 +78,12 @@ def commission():
 def gallery():
      return render_template("_gallery.html")
 
-@bp.route('/search')
-def search():
-     artworks = Artwork.query.filter_by(category = 'Realism')
+@bp.route('/results')
+def search_results(search):
+     artworks = Artwork.query.woosh_search(request.args.get('query'))).all
      num_results = Artwork.query.filter_by(category = 'Realism').count()
      return render_template("results.html", artworks = artworks, num_results = num_results)
+     
+     #artworks = Artwork.query.filter_by(category = 'Realism')
+     #num_results = Artwork.query.filter_by(category = 'Realism').count()
+     #return render_template("results.html", artworks = artworks, num_results = num_results)

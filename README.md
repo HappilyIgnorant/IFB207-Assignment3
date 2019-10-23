@@ -28,5 +28,7 @@ python.exe
 >>> from marketplace import db, create_app 
 >>> db.create_all(app=create_app())
 
+Adding search functionality...
+pip install flask_whooshalchemy
 
 Good luck lads!

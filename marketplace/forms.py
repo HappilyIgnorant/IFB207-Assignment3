@@ -1,5 +1,6 @@
 
 from flask_wtf import FlaskForm
+from wtforms import Form, SelectField
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, FileField, SelectMultipleField, BooleanField, RadioField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
@@ -48,9 +49,9 @@ class RegisterForm3(FlaskForm):
   #              "Minimalism", "Modernism", "Neoism", "Photorealism", "Pixel", ("Pop"), ("Realism"), ("Romanticism"), ("Surrealism")])
 
 class ItemDetails(FlaskForm):
-    AVAILABLE_CHOICES = [('1'),('2')]
+    AVAILABLE_CHOICES = [('1','1'), ('2','2')]
     #selling_options = [("1", "Buy"), ("2", "Auction"), ("3", "Buy/Auction")]
-    name = StringField("Title", validators=[DataRequired(), Length(max = 75)])
+    name = StringField("", validators=[DataRequired(), Length(max = 75)])
     category = SelectMultipleField("Categories", choices=[AVAILABLE_CHOICES])
     payment = IntegerField("$ - Value in AUD", validators=[DataRequired()])
     options = RadioField('Label', choices=[('value1','Auction'),('value2','Buy'),('value3', 'Auction/Buy')])
