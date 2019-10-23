@@ -3,8 +3,6 @@ from flask_wtf import FlaskForm
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, FileField, SelectMultipleField, BooleanField, RadioField, IntegerField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 
-
-
 #creates the login information
 class LoginForm(FlaskForm):
     email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email")])
