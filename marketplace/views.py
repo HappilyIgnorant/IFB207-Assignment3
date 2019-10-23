@@ -4,7 +4,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from . import db
 from .models import User, Artwork, Bid, Purchase
-from flask_login import login_required
+from flask_login import login_required, current_user
 from flask_sqlalchemy import SQLAlchemy
 import os
 from . import create_app
@@ -52,11 +52,11 @@ def item_create():
                     else:
                          addresses += "," + filename
      
-          # new_item = Artwork(seller_id = , image_address = addresses, create_date = datetime.datetime.now(), name = title, category = category, price = price, description = description, availability = True)
-          # db.session.add(new_item)
-          # db.session.commit()
+          new_item = Artwork(seller_id = current_user.id, image_address = addresses, create_date = datetime.datetime.now(), name = title, category = category, price = price, description = description, availability = True)
+          db.session.add(new_item)
+          db.session.commit()
           
-          return render_template("item_create.html", form = form)
+          return render_template("item_manage.html")
      
      
 @bp.route('/item_details')
