@@ -37,7 +37,6 @@ def item_create():
           price = request.form.get('price')
           option = request.form.get('options')
           description = request.form.get('description')
-          print(title, category, price, option, description)
           
           addresses = ""
           #Image uploading
@@ -56,7 +55,7 @@ def item_create():
           db.session.add(new_item)
           db.session.commit()
           
-          return render_template("item_manage.html")
+          return render_template("item_create.html", form = form)
      
      
 @bp.route('/item_details')
@@ -74,7 +73,8 @@ def sell():
 def buy():
      seller=False
      session['seller'] = False
-     return render_template("index.html")
+     artwork = Artwork.query.all()
+     return render_template("index.html", artwork = artwork)
      
 @bp.route('/item_manage')
 @login_required
@@ -94,22 +94,19 @@ def artists():
 def auctions():
      return render_template("_auctions.html")
 
-@bp.route('/fineart')
-def fineart():
-     return render_template("_fineart.html")
-
-@bp.route('/modernart')
-def modernart():
-     return render_template("_modernart.html")
+@bp.route('/oilpainting')
+def oilpainting():
+     return render_template("_oil_painting.html")
+@bp.route('/print')
+def print():
+     return render_template("_print.html")
 @bp.route('/sculpture')
 def sculpture():
      return render_template("_sculpture.html")
-@bp.route('/abstract')
-def abstract():
-     return render_template("_abstract.html")
-@bp.route('/commission')
-def commission():
-     return render_template("_commision.html")
+@bp.route('/watercolour')
+def watercolour():
+     return render_template("_watercolour.html")
+
 
 @bp.route('/gallery')
 def gallery():
