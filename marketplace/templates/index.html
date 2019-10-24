@@ -13,36 +13,26 @@
                 </ol>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <img class="d-block w-100" src="../static/img/largeplaceholder.jpg" alt="First slide">
-                        <div class="carousel-caption d-none d-md-block" style="padding-bottom:15% ">
-                            <h5>Present your art in our Gallery</h5>
-                            <p align="center">
+                        <img class="d-block w-100" src="../static/img/index_1.jpg" alt="First slide">
+                        <div class="carousel-caption d-none d-md-block text-body" style="padding-bottom:15% ">
+                            <h1>Present your art in our Gallery</h1>
+                            <!-- <p align="center">
                                 Place Holder information, IFB 230, due Aug 25.Mary had a little lamb.
                                 <br>Rosemary Crackers 170g. I am example text to be filled in later.
                                 <br>I am a wireframe.
-                            </p>
+                            </p> -->
                         </div>
                     </div>
                     <div class="carousel-item"> 
-                        <img class="d-block w-100" src="../static/img/largeplaceholder.jpg" alt="Second slide">
-                        <div class="carousel-caption d-none d-md-block" style="padding-bottom:15% ">
-                                <h5>Slide2</h5>
-                                <p align="center">
-                                    Place Holder information, IFB 230, due Aug 25.Mary had a little lamb.
-                                    <br>Rosemary Crackers 170g. I am example text to be filled in later.
-                                    <br>I am a wireframe.
-                                </p>
+                        <img class="d-block w-100" src="../static/img/index_2.jpg" alt="Second slide">
+                        <div class="carousel-caption d-none d-md-block text-body" style="padding-bottom:15% ">
+                                <h1>It is easy to sell your art with us!</h1>
                             </div>
                     </div>
                     <div class="carousel-item">
-                        <img class="d-block w-100" src="../static/img/largeplaceholder.jpg" alt="Third slide">
+                        <img class="d-block w-100" src="../static/img/index_3.jpg" alt="Third slide">
                         <div class="carousel-caption d-none d-md-block" style="padding-bottom:15% ">
-                                <h5>Slide 3</h5>
-                                <p align="center">
-                                    Place Holder information, IFB 230, due Aug 25.Mary had a little lamb.
-                                    <br>Rosemary Crackers 170g. I am example text to be filled in later.
-                                    <br>I am a wireframe.
-                                </p>
+                                <h1>&copy; Virtousity 2019</h1>
                             </div>
                     </div>
                 </div>
@@ -57,46 +47,19 @@
             </div> 
             <h1 align="center">Popular items</h1>
             <div class="row border-top" >
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 space-bottom-wide">
-                    <div class="card" >
-                        <img src="../static/img/product3.jpg" class="card-img-top" alt="..." >
-                        <div class="card-body">
-                            <h5 class="card-title">Example Art</h5>
-                            <p class="card-text">Don't pick me Don't pick me Don't pick me Don't pick me Don't pick me Don't pick me Don't pick me </p>
-                            <a href="#" class="btn btn-dark">Don't press me</a>
-                        </div>
-                    </div>
-                </div>
+                {% for i in range(4) %}
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 space-bottom-wide">
                     <div class="card">
-                        <img src="../static/img/product1.jpg" class="card-img-top" alt="...">
+                        <img src={{artwork[i].image_address}} class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 class="card-title">Example Art</h5>
-                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <h5 class="card-title">{{artwork[i].name}}</h5>
+                            <p class="card-text">AUD ${{artwork[i].price}}</p>
+                            <p class="card-text">{{artwork[i].description}}</p>
                             <a href="item_details.html" class="btn btn-orange">Visit Page</a>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 space-bottom-wide">
-                    <div class="card" >
-                        <img src="../static/img/product2.jpg" class="card-img-top" alt="..." >
-                        <div class="card-body">
-                            <h5 class="card-title">Example Art</h5>
-                            <p class="card-text">Don't pick me Don't pick me Don't pick me Don't pick me Don't pick me Don't pick me Don't pick me </p>
-                            <a href="#" class="btn btn-dark">Don't press me</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 space-bottom-wide">
-                    <div class="card" >
-                        <img src="../static/img/product2.jpg" class="card-img-top" alt="..." >
-                        <div class="card-body">
-                            <h5 class="card-title">Example Art</h5>
-                            <p class="card-text">Don't pick me Don't pick me Don't pick me Don't pick me Don't pick me Don't pick me Don't pick me </p>
-                            <a href="#" class="btn btn-dark">Don't press me</a>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
 

@@ -1,0 +1,7 @@
+WORK IT OUT
+
+Search field needs to be in a form, form needs to post to a search root that search root needs to get value from the form, same way with registration
+
+With that value, artworks object, (Search database if email exists) but for artwork title, one by one and display them on the page
+
+Need template for results, pass the artworks object into the template to print out hte block of artworks

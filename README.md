@@ -32,3 +32,22 @@ Adding search functionality...
 pip install flask_whooshalchemy
 
 Good luck lads!
+
+Images references
+https://live.staticflickr.com/957/42233947392_bbc517e0ce_b.jpg
+https://live.staticflickr.com/3775/9285547594_1dbc0fefb6.jpg
+
+https://artloversaustralia.com.au/shop/if-you-go-down-to-the-woods-today/
+https://www.sketch.ca/sketchPub/uploads/2019/03/radical-art-of-young-people.jpg
+https://artignite.files.wordpress.com/2017/09/p_20170918_143901_vhdr_on1.jpg
+https://www.artandplaytherapytraining.com.au/thumbnaillarge/ARTOFGRIEVING23.jpg
+https://artloversaustralia.com.au/shop/pixels/
+https://artloversaustralia.com.au/shop/equilibre/
+https://artloversaustralia.com.au/shop/mauve-bouquet/
+https://artloversaustralia.com.au/shop/the-pink-sky/
+https://artloversaustralia.com.au/shop/who-stole-my-identity/
+https://artloversaustralia.com.au/shop/sacred-jade/
+https://artloversaustralia.com.au/shop/garden-retreat/
+https://artloversaustralia.com.au/shop/once-upon-a-reef/
+https://artloversaustralia.com.au/shop/celebration-2/
+https://artloversaustralia.com.au/shop/fishing-float-tangle-2/

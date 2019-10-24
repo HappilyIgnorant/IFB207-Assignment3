@@ -23,13 +23,13 @@
                 <h1>Log In</h1>
                 {% with messages = get_flashed_messages() %}
                 {% if messages %}
-                <div class="notification is-danger">
+                <div class="alert alert-danger">
                     {{ messages[0] }}
                 </div>
                 {% endif %}
                 {% endwith %}
             </div>
-            <div class="col-12">
+            <div class="col-12 py-3">
                 <form action="" method="POST" validate>
                     <div class="container">
                         <div class="row">
@@ -41,23 +41,22 @@
                                         Forgot your password?
                                     </a>
                                 </p>
-                            </div>
-                            <div class="col-12">
-
+                                <p>
+                                    {{ wtf.form_field(form.password) }}
+                                </p>
+                                <p>{{ form.remember_me() }}
+                                    {{ form.remember_me.label }}
+                                </p>
+                                <button type="button" class="btn btn-warning">
+                                    {{ wtf.form_field(form.submit) }}
+                                </button>
                             </div>
                         </div>
                     </div>
 
 
-                    <p>
-                        {{ wtf.form_field(form.password) }}
-                    </p>
-                    <p>{{ form.remember_me() }}
-                        {{ form.remember_me.label }}
-                    </p>
-                    <button type="button" class="btn btn-warning">
-                        {{ wtf.form_field(form.submit) }}
-                    </button>
+                    
+                    
                 </form>
             </div>
 

@@ -3,7 +3,7 @@ from flask import Flask
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
-
+import os
 
 db = SQLAlchemy()
 global seller
@@ -15,6 +15,9 @@ def create_app():
     app = Flask(__name__)  # this is the name of the module/package that is calling this app
     #set the app configuration data 
     app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///marketplace.sqlite'
+    dirname = os.path.dirname(__file__)
+    app.config['UPLOAD_FOLDER'] = os.path.join(dirname, 'static/img/')
+
     app.debug=True
     app.secret_key='utroutoru'
     
