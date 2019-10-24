@@ -14,7 +14,7 @@ from .models import User, Artwork, Bid, Purchase
 def create_app():
     app = Flask(__name__)  # this is the name of the module/package that is calling this app
     #set the app configuration data 
-    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///marketplace.sqlite'
+    app.config['SQLALCHEMY_DATABASE_URI']=os.environ['https://git.heroku.com/virtuosityjackson.git']
     dirname = os.path.dirname(__file__)
     app.config['UPLOAD_FOLDER'] = os.path.join(dirname, 'static/img/')
 
