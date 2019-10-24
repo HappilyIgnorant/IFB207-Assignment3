@@ -104,11 +104,11 @@ def oilpainting():
      num_results = Artwork.query.filter_by(category = 'Oil Painting').count()
      return render_template("_oil_painting.html", artworks = artworks, num_results = num_results)
 
-@bp.route('/print')
-def print():
-     artworks = Artwork.query.filter_by(category = 'Print')
-     num_results = Artwork.query.filter_by(category = 'Print').count()
-     return render_template("_print.html", artworks = artworks, num_results = num_results)
+@bp.route('/show')
+def show():
+     artworks = Artwork.query.filter_by(category = 'show')
+     num_results = Artwork.query.filter_by(category = 'show').count()
+     return render_template("show.html", artworks = artworks, num_results = num_results)
 
 @bp.route('/sculpture')
 def sculpture():
@@ -129,14 +129,19 @@ def gallery():
      num_results = Artwork.query.count()
      return render_template("_gallery.html", artworks = artworks, num_results = num_results)
 
-@bp.route('/results', methods=['GET', 'POST'])
-def search_results(search):
-     if request.method=='GET':
-        search = SearchForm()
-        return render_template("results.html",  search=search)
+@bp.route('/results', methods=['POST'])
+def search_results():
+     searchTerm=request.form.get("search_string")     
+     Art=Artwork.query.filter(Artwork.description.like('%'+searchTerm+'%'))
+     print(searchTerm)
+     print( Art.count())
+     return render_template("results.html", artworks = Art, num_results = Art.count())
 
+     
 
-     print(search)
+     
+     #return render_template("results.html")
+
      # else: #Okay, just revert back when you want to test
      # Okay can do but at the moment I'm still scratchign my head lol, so I feel like I should just copy the registration form a little
      # yeah you can ahha
