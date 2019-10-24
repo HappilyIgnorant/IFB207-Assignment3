@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, session, request
-from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm, ItemDetails
+from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm, ItemDetails, SearchForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from . import db
@@ -21,14 +21,16 @@ def index():
      artwork = Artwork.query.all()
      return render_template("index.html", artwork = artwork)
 
-@bp.route('/item_create', methods=['GET', 'POST'])
+
+
+@bp.route('/sell', methods=['GET', 'POST'])
 @login_required
-def item_create():
+def sell():
+     seller=True
+     session['seller'] = True
      if request.method=='GET':
           form = ItemDetails()
           return render_template("item_create.html", form = form)
-          
-          
      else:
           form = ItemDetails()
 
@@ -58,16 +60,11 @@ def item_create():
           return render_template("item_create.html", form = form)
      
      
-@bp.route('/item_details')
-def item_details():
-     artwork = Artwork.query.filter_by(id = 2).first()
-     return render_template("item_details.html", artwork = artwork)
-
-@bp.route('/sell')
-def sell():
-     seller=True
-     session['seller'] = True
-     return render_template("item_manage.html")
+@bp.route('/item_details/<id>')
+def item_details(id):
+     artwork = Artwork.query.filter_by(id = id).first()
+     seller = User.query.filter_by(id = artwork.seller_id).first()
+     return render_template("item_details.html", artwork = artwork, seller = seller)
 
 @bp.route('/buy')
 def buy():
@@ -76,10 +73,17 @@ def buy():
      artwork = Artwork.query.all()
      return render_template("index.html", artwork = artwork)
      
+
+@bp.route('/select-item')
+@login_required
+def select_item():
+     artworks = Artwork.query.all()
+     return render_template("item_manage.html")
+
 @bp.route('/item_manage')
 @login_required
-def item_manage():
-
+def item_manage(): # Query based on current_user.id
+     artworks = Artwork.query.all() #_
      return render_template("item_manage.html")
 
 
@@ -96,27 +100,51 @@ def auctions():
 
 @bp.route('/oilpainting')
 def oilpainting():
-     return render_template("_oil_painting.html")
+     artworks = Artwork.query.filter_by(category = 'Oil Painting')
+     num_results = Artwork.query.filter_by(category = 'Oil Painting').count()
+     return render_template("_oil_painting.html", artworks = artworks, num_results = num_results)
+
 @bp.route('/print')
 def print():
-     return render_template("_print.html")
+     artworks = Artwork.query.filter_by(category = 'Print')
+     num_results = Artwork.query.filter_by(category = 'Print').count()
+     return render_template("_print.html", artworks = artworks, num_results = num_results)
+
 @bp.route('/sculpture')
 def sculpture():
-     return render_template("_sculpture.html")
+     artworks = Artwork.query.filter_by(category = 'Sculpture')
+     num_results = Artwork.query.filter_by(category = 'Sculpture').count()
+     return render_template("_sculpture.html", artworks = artworks, num_results = num_results)
+
 @bp.route('/watercolour')
 def watercolour():
-     return render_template("_watercolour.html")
+     artworks = Artwork.query.filter_by(category = 'Watercolor')
+     num_results = Artwork.query.filter_by(category = 'Watercolor').count()
+     return render_template("_watercolour.html", artworks = artworks, num_results = num_results)
 
 
 @bp.route('/gallery')
 def gallery():
-     return render_template("_gallery.html")
+     artworks = Artwork.query.all()
+     num_results = Artwork.query.count()
+     return render_template("_gallery.html", artworks = artworks, num_results = num_results)
 
-@bp.route('/results')
+@bp.route('/results', methods=['GET', 'POST'])
 def search_results(search):
-     artworks = Artwork.query.woosh_search(request.args.get('query')).all
-     num_results = Artwork.query.filter_by(category = 'Realism').count()
-     return render_template("results.html", artworks = artworks, num_results = num_results)
+     if request.method=='GET':
+        search = SearchForm()
+        return render_template("results.html",  search=search)
+
+
+     print(search)
+     # else: #Okay, just revert back when you want to test
+     # Okay can do but at the moment I'm still scratchign my head lol, so I feel like I should just copy the registration form a little
+     # yeah you can ahha
+
+     
+     #artworks = Artwork.query.woosh_search(request.args.get('query')).all
+     #num_results = Artwork.query.filter_by(category = 'Realism').count()
+     #return render_template("results.html", artworks = artworks, num_results = num_results)
      
      #artworks = Artwork.query.filter_by(category = 'Realism')
      #num_results = Artwork.query.filter_by(category = 'Realism').count()

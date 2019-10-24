@@ -72,3 +72,6 @@ class ItemDetails(FlaskForm):
     image11 = FileField("Image File")
     image12 = FileField("Image File")
     post = SubmitField("Post")
+
+class SearchForm(FlaskForm):
+    search = StringField('search')

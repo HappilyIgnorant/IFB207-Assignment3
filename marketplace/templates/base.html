@@ -1,3 +1,4 @@
+{% import "bootstrap/wtf.html" as wtf %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -23,17 +24,16 @@
                     <a href="{{ url_for('main.index') }}"><div class="companyLogo"></div></a>
                 </div>
                 <div class="col-4">
-                    <form class="form-inline" method="GET" action="search">
-                        <div class="form-group">
-                            <input type="text" class="form-control" name="search" id="search" placeholder="Search for Art, Artists or ongoing Auctions">
-                        </div>
+                    
+                    <form action="/results" method="post" name="search">
+                            <div class="input-group md-form form-sm form-2 pl-0 searchbox" >
+                                    <input type="text" class="form-control my-0 py-1 red-border" name="search_string" id="search_string"  placeholder="Search for Art, Artists or ongoing Auctions" aria-label="Search" method="POST" action = "search">
+                                    
+                                    <div class="input-group-append">
+                                        <span class="input-group-text red lighten-3"><i class="fas fa-search text-grey" aria-hidden="true" id="btnSearch"></i></span>
+                                    </div>
+                                </div>
                     </form>
-                    <div class="input-group md-form form-sm form-2 pl-0 searchbox" >
-                        <input type="text" class="form-control my-0 py-1 red-border" name="search" id="search"  placeholder="Search for Art, Artists or ongoing Auctions" aria-label="Search" method="GET" action = "search">
-                        <div class="input-group-append">
-                            <span class="input-group-text red lighten-3"><i class="fas fa-search text-grey" aria-hidden="true" id="btnSearch"></i></span>
-                        </div>
-                    </div>
 
                 </div>
                 {% if current_user.is_authenticated %}
@@ -42,7 +42,7 @@
                         <a href="{{ url_for('main.sell') }}">SELL</a> |
                         <a href="{{ url_for('main.buy') }}" style="padding-right:15px;">BUY</a>
                         <i class="fas fa-user "></i>
-                        <a href="#" id="li_link" class="pr-1">{{current_user.first_name.upper()}} {{current_user.last_name.upper()}}</a>
+                        <a href="{{ url_for('main.item_manage') }}" id="li_link" class="pr-1">{{current_user.first_name.upper()}} {{current_user.last_name.upper()}}</a>
                         <a href="{{ url_for('auth.logout') }}">LOG OUT</a>
                     </div>
                 {% else %}
@@ -92,24 +92,20 @@
         {% endblock content %}
 
         <!-- Footer -->
-        <footer class="page-footer font-small unique-color-dark pt-4">
+        <footer class="page-footer font-small unique-color-dark pt-3">
             <!-- Footer Elements -->
             <div class="container">
                 <!-- Call to action -->
-                <ul class="list-unstyled list-inline text-center py-2">
+                <ul class="list-unstyled list-inline text-center">
                     <li class="list-inline-item">
-                        <button class="btn btn-outline-light">Register for free</button>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#!" class="btn btn-outline-white btn-rounded">Sign up!</a>
+                        <a class="btn btn-outline-light" href="{{ url_for('auth.register') }}" role="button">Register for free</a>
                     </li>
                 </ul>
                 <!-- Call to action -->
             </div>
             <!-- Footer Elements -->
             <!-- Copyright -->
-            <div class="footer-copyright text-center py-3">© 2019 Copyright:
-                <a href="https://virtuosity.com">Virtuosity.com</a>
+            <div class="footer-copyright text-center py-3">© Virtuosity 2019
             </div>
             <!-- Copyright -->
 

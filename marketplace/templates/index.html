@@ -4,7 +4,7 @@
         {% block content %}
         <!-- END NAVBAR this appears on every page -->
         <!-- Main content -->
-        <div class="container-fluid mt-200" style="Padding-top:7%">
+        <div class="container-fluid mt-200" style="Padding-top:2%">
             <div id="CarouselNo1" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
                     <li data-target="#CarouselNo1" data-slide-to="0" class="active"></li>
@@ -45,25 +45,32 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div> 
-            <h1 align="center">Popular items</h1>
-            <div class="row border-top" >
+            <h1 class="py-2" align="center">Popular items</h1>
+            <div class="row border-top py-1" >
                 {% for i in range(4) %}
                 <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 space-bottom-wide">
                     <div class="card">
-                        <img src={{artwork[i].image_address}} class="card-img-top" alt="...">
+                        <img src=../static/img/{{artwork[i].image_address}} class="card-img-top" alt="...">
                         <div class="card-body">
                             <h5 class="card-title">{{artwork[i].name}}</h5>
                             <p class="card-text">AUD ${{artwork[i].price}}</p>
                             <p class="card-text">{{artwork[i].description}}</p>
-                            <a href="item_details.html" class="btn btn-orange">Visit Page</a>
                         </div>
                     </div>
                 </div>
                 {% endfor %}
             </div>
+            
+            <div class="row border-bottom pb-3 py-2">
+                {% for i in range(4) %}
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 space-bottom-wide text-center">
+                <a href="{{ url_for('main.item_details', id = artwork[i].id) }}" class="btn btn-orange">Details</a>
+                </div>
+                {% endfor %}
+            </div>
         </div>
 
-        <h1 align="center">Featured Artists</h1>
+        <!-- <h1 align="center">Featured Artists</h1>
         <div class="row border-top" style="padding-top:1%">
             <div class="col-3 portrait">
                     <img src="../static/img/profileplaceholder.png">
@@ -81,7 +88,7 @@
                     <img src="../static/img/profileplaceholder.png">
                     <div class="plabel">Amiee Hall</div>
             </div>
-        </div>
+        </div> -->
         <div class="jumbotron">
             <p>Buying art made easy: Virtuosity is an online gallery for contemporary art that allows collectors and art lovers alike to buy works of art in complete security 
                 from nationally recognized artists. From abstract canvases, figurative paintings, drawings or even street art and graffiti, we offer an international selection of 

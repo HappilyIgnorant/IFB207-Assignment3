@@ -10,6 +10,33 @@
     </style>
 </head>
 
-<H1>SCULPTURE</H1>
+<div class ="text-center pb-4"><H1>SCULPTURE</H1></div>
+
+<div class="card-deck">
+    <div class="row">
+    {% for i in range(num_results) %}
+    {% if i % 3 == 0 %}
+    </div>
+    <div class="row">
+    {% endif %}
+        <div class="card mb-3 col-md-4 card border-secondary">
+            <img src="../static/img/{{artworks[i].image_address}}" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><a href="{{ url_for('main.item_details', id = artworks[i].id) }}">{{artworks[i].name}}</a></h5>
+                <p class="card-text"><b>Price:</b> ${{artworks[i].price}}</p>
+                {% if artworks[i].availability == True %}
+                <p class="card-text"><b>Status:</b> Available</p>
+                {% else %}
+                <p class="card-text"><b>Status:</b> SOLD</p>
+                {% endif %}
+                <p class="card-text">{{artworks[i].description}}</p>
+            </div>
+            <div class="card-footer">
+                <small class="text-muted float-right">Created on: {{artworks[i].create_date}}</small>
+            </div>
+        </div>
+    {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
