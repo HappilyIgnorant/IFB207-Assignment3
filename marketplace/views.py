@@ -104,11 +104,11 @@ def oilpainting():
      num_results = Artwork.query.filter_by(category = 'Oil Painting').count()
      return render_template("_oil_painting.html", artworks = artworks, num_results = num_results)
 
-@bp.route('/show')
-def show():
-     artworks = Artwork.query.filter_by(category = 'show')
-     num_results = Artwork.query.filter_by(category = 'show').count()
-     return render_template("show.html", artworks = artworks, num_results = num_results)
+@bp.route('/prints')
+def prints():
+     artworks = Artwork.query.filter_by(category = 'print')
+     num_results = Artwork.query.filter_by(category = 'print').count()
+     return render_template("_print.html", artworks = artworks, num_results = num_results)
 
 @bp.route('/sculpture')
 def sculpture():
