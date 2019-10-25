@@ -137,8 +137,23 @@ def search_results():
      print( Art.count())
      return render_template("results.html", artworks = Art, num_results = Art.count())
 
-     
 
+# Just to test the page
+@bp.route('/404')     
+def page_404():
+     return render_template("404.html")
+
+@bp.route('/403')     
+def page_403():
+     return render_template("403.html")
+
+@bp.route('/500')     
+def page_500():
+     return render_template("500.html")
+    
+@bp.route('/410')     
+def page_410():
+     return render_template("410.html")
      
      #return render_template("results.html")
 

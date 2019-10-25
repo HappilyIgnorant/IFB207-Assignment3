@@ -1,5 +1,5 @@
 #import flask - from the package import class
-from flask import Flask 
+from flask import Flask ,render_template
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -49,7 +49,23 @@ def create_app():
 
     from . import auth
     app.register_blueprint(auth.auth)
+
+    @app.errorhandler(403)
+    def forbidden(e):
+        return render_template("403.html"),403
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template("404.html"),404
     
+    @app.errorhandler(410)
+    def page_deleted(e):
+        return render_template("410.html"),410 
+
+    @app.errorhandler(500)
+    def internal_error(e):
+        return render_template("500.html"),500 
+
     return app
 
 
