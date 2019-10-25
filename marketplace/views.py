@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, flash, redirect, session, request
+from flask import Blueprint, render_template, flash, redirect, session, request, url_for
 from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm, ItemDetails, SearchForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
@@ -56,6 +56,7 @@ def sell():
                new_item = Artwork(seller_id = current_user.id, image_address = addresses, create_date = datetime.datetime.now(), name = title, category = category, price = price, description = description, availability = True)
                db.session.add(new_item)
                db.session.commit()
+               return redirect(url_for('main.manage_list'))
           
           return render_template("item_create.html", form = form)
      
@@ -81,6 +82,16 @@ def buy():
 def select_item():
      artworks = Artwork.query.all()
      return render_template("item_manage.html")
+
+@bp.route('/manage_list')
+@login_required
+def manage_list():
+     seller= True
+     session['seller'] = True
+     artwork = Artwork.query.filter_by(seller_id = current_user.id)
+     num_results = Artwork.query.filter_by(seller_id = current_user.id).count()
+     return render_template("manage_list.html", artworks = artwork, num_results = num_results)
+
 
 @bp.route('/item_manage')
 @login_required
