@@ -63,8 +63,10 @@ def sell():
 @bp.route('/item_details/<id>')
 def item_details(id):
      artwork = Artwork.query.filter_by(id = id).first()
+     art_images = artwork.image_address.split(",")
+     images_count = len(art_images)
      seller = User.query.filter_by(id = artwork.seller_id).first()
-     return render_template("item_details.html", artwork = artwork, seller = seller)
+     return render_template("item_details.html", artwork = artwork, seller = seller, images_count = images_count, art_images = art_images)
 
 @bp.route('/buy')
 def buy():
