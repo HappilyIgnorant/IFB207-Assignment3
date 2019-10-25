@@ -33,29 +33,29 @@ def sell():
           return render_template("item_create.html", form = form)
      else:
           form = ItemDetails()
-
-          title = request.form.get('name')
-          category = request.form.get('category')
-          price = request.form.get('price')
-          option = request.form.get('options')
-          description = request.form.get('description')
+          if form.validate_on_submit():
+               title = request.form.get('name')
+               category = request.form.get('category')
+               price = request.form.get('price')
+               option = request.form.get('options')
+               description = request.form.get('description')
+               
+               addresses = ""
+               #Image uploading
+               image_forms = ['image1', 'image2', 'image3', 'image4', 'image5', 'image6']
+               for i in image_forms:
+                    f = request.files[i]
+                    if f:
+                         filename = secure_filename(f.filename)
+                         f.save(os.path.join(create_app().config['UPLOAD_FOLDER'], filename))
+                         if addresses == "":
+                              addresses = filename
+                         else:
+                              addresses += "," + filename
           
-          addresses = ""
-          #Image uploading
-          image_forms = ['image1', 'image2', 'image3', 'image4', 'image5', 'image6', 'image7', 'image8', 'image9', 'image10']
-          for i in image_forms:
-               f = request.files[i]
-               if f:
-                    filename = secure_filename(f.filename)
-                    f.save(os.path.join(create_app().config['UPLOAD_FOLDER'], filename))
-                    if addresses == "":
-                         addresses = filename
-                    else:
-                         addresses += "," + filename
-     
-          new_item = Artwork(seller_id = current_user.id, image_address = addresses, create_date = datetime.datetime.now(), name = title, category = category, price = price, description = description, availability = True)
-          db.session.add(new_item)
-          db.session.commit()
+               new_item = Artwork(seller_id = current_user.id, image_address = addresses, create_date = datetime.datetime.now(), name = title, category = category, price = price, description = description, availability = True)
+               db.session.add(new_item)
+               db.session.commit()
           
           return render_template("item_create.html", form = form)
      

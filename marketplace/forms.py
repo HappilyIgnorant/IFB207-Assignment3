@@ -3,7 +3,7 @@ from flask_wtf import FlaskForm
 from wtforms import Form, SelectField
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, FileField, SelectMultipleField, BooleanField, RadioField, IntegerField, MultipleFileField
 from wtforms.validators import DataRequired, Length, Email, EqualTo
-from flask_wtf.file import FileRequired
+from flask_wtf.file import FileRequired, FileAllowed
 
 
 #creates the login information
@@ -56,21 +56,15 @@ class ItemDetails(FlaskForm):
     #selling_options = [("1", "Buy"), ("2", "Auction"), ("3", "Buy/Auction")]
     name = StringField("", validators=[DataRequired(), Length(max = 75)])
     category = SelectField("Categories", choices=CATEGORY_CHOICES)
-    price = IntegerField("$ - Value in AUD", validators=[DataRequired()])
+    price = IntegerField("$ - Value in AUD", validators=[DataRequired(message="Please enter an appropriate price number.")])
     options = RadioField('Label', choices=[('Auction','Auction'),('Buy','Buy'),('Auction/Buy', 'Auction/Buy')], default='Auction')
     description = TextAreaField("Description", validators=[DataRequired(), Length(max = 5000)])
-    image1 = FileField("Image File", validators=[FileRequired()])
-    image2 = FileField("Image File")
-    image3 = FileField("Image File")
-    image4 = FileField("Image File")
-    image5 = FileField("Image File")
-    image6 = FileField("Image File")
-    image7 = FileField("Image File")
-    image8 = FileField("Image File")
-    image9 = FileField("Image File")
-    image10 = FileField("Image File")
-    image11 = FileField("Image File")
-    image12 = FileField("Image File")
+    image1 = FileField("Image File", validators=[FileRequired(), FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
+    image2 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
+    image3 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
+    image4 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
+    image5 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
+    image6 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
     post = SubmitField("Post")
 
 class SearchForm(FlaskForm):

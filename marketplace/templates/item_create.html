@@ -10,6 +10,27 @@
     </style>
 </head>
 <div class ="text-center pb-4"><H1>SELL AN ITEM</H1></div>
+{% if form.errors %}
+<div class="alert alert-warning" role="alert">{{form.errors}}</div>
+{% endif %}
+<!-- {% if form.image2.errors %}
+<div class="alert alert-warning" role="alert">Image 2: {{form.image2.errors}}</div>
+{% endif %}
+{% if form.image3.errors %}
+<div class="alert alert-warning" role="alert">Image 3: {{form.image3.errors}}</div>
+{% endif %}
+{% if form.image4.errors %}
+<div class="alert alert-warning" role="alert">Image 4: {{form.image4.errors}}</div>
+{% endif %}
+{% if form.image5.errors %}
+<div class="alert alert-warning" role="alert">Image 5: {{form.image5.errors}}</div>
+{% endif %}
+{% if form.image6.errors %}
+<div class="alert alert-warning" role="alert">Image 6: {{form.image6.errors}}</div>
+{% endif %}
+{% if form.price.errors %}
+<div class="alert alert-warning" role="alert">{{form.price.errors}}</div>
+{% endif %} -->
 
 <div>
 <form class="item-form" method="POST" enctype="multipart/form-data">
@@ -18,6 +39,7 @@
             <div class="form-group row">
                 <label for="colFormTitle" class="col-sm-2 col-form-label">Title:</label>
                 <div class="col-sm-10">
+                    {{ form.hidden_tag() }}
                     {{ wtf.form_field(form.name) }}
                     <div class="float-right">75 character(s) remaining</div>
                 </div>
@@ -62,7 +84,7 @@
                         {{ form.image1(class="col-6 campic") }}
                         {{ form.image2(class="col-6 campic") }}
                     </div>
-                    <!-- <div class="row mt-2 py-3">
+                    <div class="row mt-2 py-3">
                         {{ form.image3(class="col-6 campic") }}
                         {{ form.image4(class="col-6 campic") }}
                     </div>
@@ -70,14 +92,6 @@
                         {{ form.image5(class="col-6 campic") }}
                         {{ form.image6(class="col-6 campic") }}
                     </div>
-                    <div class="row mt-2 py-3">
-                        {{ form.image7(class="col-6 campic") }}
-                        {{ form.image8(class="col-6 campic") }}
-                    </div>
-                    <div class="row mt-2 py-3">
-                        {{ form.image9(class="col-6 campic") }}
-                        {{ form.image10(class="col-6 campic") }}
-                    </div> -->
 
                 </div>
 
