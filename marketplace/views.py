@@ -106,8 +106,8 @@ def oilpainting():
 
 @bp.route('/prints')
 def prints():
-     artworks = Artwork.query.filter_by(category = 'print')
-     num_results = Artwork.query.filter_by(category = 'print').count()
+     artworks = Artwork.query.filter_by(category = 'Print')
+     num_results = Artwork.query.filter_by(category = 'Print').count()
      return render_template("_print.html", artworks = artworks, num_results = num_results)
 
 @bp.route('/sculpture')
