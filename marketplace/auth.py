@@ -37,7 +37,7 @@ def login():
             return redirect(url_for('auth.login'))
         
         login_user(user, remember=remember)
-        return redirect(url_for('main.item_manage'))
+        return redirect(url_for('main.index'))
 
 
 
