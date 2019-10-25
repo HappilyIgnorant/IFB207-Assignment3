@@ -73,7 +73,11 @@
                     <dt class="col-12">Status: </dt>
                     {% if artwork.availability == True %}
                     <dt class="col-12" style="color:green;">AVAILABLE</dt>
-                        <button class="btn btn-secondary float-right" style="width:100px" type="button">Bid</button>
+                        {% if current_user.is_authenticated %}
+                            <button class="btn btn-secondary float-right" style="width:100px" type="button">Bid</button>
+                        {% else %}
+                            <div class="alert alert-warning" role="alert">Interested in this item? <a href="{{ url_for('auth.login') }}">Login</a> to bid.</div>
+                        {% endif %}
                     {% else %}
                     <dt class="col-12" style="color:red">SOLD</dt>
                     {% endif %}
