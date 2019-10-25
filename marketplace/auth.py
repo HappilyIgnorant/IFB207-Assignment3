@@ -26,8 +26,7 @@ def login():
         remember = True if request.form.get('remember_me') else False
 
         user = User.query.filter_by(email=email).first()
-        print(user)
-        print(User.query.filter_by(email=email).first())
+
         if not user:
             flash('Please check your login details and try again.')
             return redirect(url_for('auth.login'))
