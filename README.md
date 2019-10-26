@@ -25,11 +25,15 @@ https://www.youtube.com/watch?v=K0vSCCAM2ss
 
 Creating the database...
 python.exe
+
 >>> from marketplace import db, create_app 
+
 >>> db.create_all(app=create_app())
 
-Adding search functionality...
-pip install flask_whooshalchemy
+How to convert the SQLLite to a 
+heroku login -i
+heroku git:remote -a virtuosity
+git push
 
 Good luck lads!
 
