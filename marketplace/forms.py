@@ -36,7 +36,6 @@ class RegisterForm1(FlaskForm):
     next = SubmitField("Next")
 
 class RegisterForm2(FlaskForm):
-    
     next = SubmitField("Next")
 
 class RegisterForm3(FlaskForm):
@@ -69,3 +68,6 @@ class ItemDetails(FlaskForm):
 
 class SearchForm(FlaskForm):
     search = StringField('search')
+
+class BidForm(FlaskForm):
+    bidButton = SubmitField("Bid")
