@@ -108,6 +108,26 @@
                             <table id="bidtable" class="display" style="width:100%"></table>                            
                         </div>
                     </div>
+                    <div class="row">
+                        <table class="table">
+                            <thead class="bg-warning">
+                                <tr>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Select</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for bid in bids %}
+                                <tr>
+                                    <th scope="row">{{bid.date}}</th>
+                                    <td>{{bid.bidder}}</td>
+                                    <td>Insert button</td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
