@@ -77,7 +77,11 @@
                             {% if current_user.id == seller.id %}
                                 <a href="{{ url_for('main.item_manage', art_id = artwork.id) }}"><button class="btn btn-success float-right" style="width:180px" type="button">Manage this item</button></a>
                             {% else %}
-                                <button class="btn btn-success float-right" style="width:100px" type="button">Bid</button>
+                                <form method="POST">
+                                    {{ form.csrf_token }}
+                                    {{wtf.form_field(form.bidButton, class="btn btn-success float-right", style="width:100px")}}
+                                </form>
+                                <!--<button class="btn btn-success float-right" style="width:100px" type="button">Bid</button>-->
                             {% endif %}
                         {% else %}
                             <div class="alert alert-warning" role="alert">Interested in this item? <a href="{{ url_for('auth.login') }}">Login</a> to bid.</div>
