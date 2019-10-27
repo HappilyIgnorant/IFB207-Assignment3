@@ -93,11 +93,16 @@ def manage_list():
      return render_template("manage_list.html", artworks = artwork, num_results = num_results)
 
 
-@bp.route('/item_manage')
+@bp.route('/item_manage/<art_id>')
 @login_required
-def item_manage(): # Query based on current_user.id
-     artworks = Artwork.query.all() #_
-     return render_template("item_manage.html")
+def item_manage(art_id): # Query based on current_user.id
+     artwork = Artwork.query.filter_by(id = art_id).first()
+     num_bids = Bid.query.filter_by(artwork_id = art_id).count()
+     num_bidders = Bid.query.filter_by(artwork_id = art_id).distinct(Bid.bidder).count()
+     date = artwork.create_date.split(' ')[0].split('-')
+     date = date[2]+'/'+date[1]+'/'+date[0]
+     deposit = round(artwork.price*0.1)
+     return render_template("item_manage.html", artwork = artwork, num_bids = num_bids, num_bidders = num_bidders, date = date, deposit = deposit)
 
 
  #Menu links
