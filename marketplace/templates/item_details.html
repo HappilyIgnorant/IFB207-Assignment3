@@ -75,7 +75,7 @@
                     <dt class="col-12" style="color:green;">AVAILABLE</dt>
                         {% if current_user.is_authenticated %}
                             {% if current_user.id == seller.id %}
-                                <button class="btn btn-success float-right" style="width:180px" type="button">Manage this item</button>
+                                <a href="{{ url_for('main.item_manage', art_id = artwork.id) }}"><button class="btn btn-success float-right" style="width:180px" type="button">Manage this item</button></a>
                             {% else %}
                                 <button class="btn btn-success float-right" style="width:100px" type="button">Bid</button>
                             {% endif %}
