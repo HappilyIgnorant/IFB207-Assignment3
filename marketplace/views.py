@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, flash, redirect, session, request, url_for
-from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm, ItemDetails, SearchForm
+from .forms import RegisterForm1, RegisterForm2, RegisterForm3, LoginForm, ItemDetails, SearchForm, BidForm
 from werkzeug.security import generate_password_hash, check_password_hash
 from werkzeug.utils import secure_filename
 from . import db
@@ -61,13 +61,23 @@ def sell():
           return render_template("item_create.html", form = form)
      
      
-@bp.route('/item_details/<id>')
+@bp.route('/item_details/<id>', methods=['GET', 'POST'])
 def item_details(id):
+     bid = BidForm()
      artwork = Artwork.query.filter_by(id = id).first()
      art_images = artwork.image_address.split(",")
      images_count = len(art_images)
      seller = User.query.filter_by(id = artwork.seller_id).first()
-     return render_template("item_details.html", artwork = artwork, seller = seller, images_count = images_count, art_images = art_images)
+     if request.method=='GET':
+          return render_template("item_details.html", form = bid, artwork = artwork, seller = seller, images_count = images_count, art_images = art_images)
+     else:
+          if bid.validate_on_submit():
+               new_bid= Bid(artwork_id = id, bidder = current_user.id, seller = artwork.seller_id, date = datetime.datetime.now())
+               db.session.add(new_bid)
+               db.session.commit()
+               return redirect(url_for('main.index'))
+          
+          return render_template("item_details.html", form = bid, artwork = artwork, seller = seller, images_count = images_count, art_images = art_images)
 
 @bp.route('/buy')
 def buy():
@@ -99,10 +109,11 @@ def item_manage(art_id): # Query based on current_user.id
      artwork = Artwork.query.filter_by(id = art_id).first()
      num_bids = Bid.query.filter_by(artwork_id = art_id).count()
      num_bidders = Bid.query.filter_by(artwork_id = art_id).distinct(Bid.bidder).count()
+     bids = Bid.query.filter_by(artwork_id = art_id)
      date = artwork.create_date.split(' ')[0].split('-')
      date = date[2]+'/'+date[1]+'/'+date[0]
      deposit = round(artwork.price*0.1)
-     return render_template("item_manage.html", artwork = artwork, num_bids = num_bids, num_bidders = num_bidders, date = date, deposit = deposit)
+     return render_template("item_manage.html", artwork = artwork, num_bids = num_bids, num_bidders = num_bidders, date = date, deposit = deposit, bids = bids)
 
 
  #Menu links
