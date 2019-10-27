@@ -73,7 +73,7 @@ def register():
         db.session.add(new_user)
         db.session.commit()
 
-        return render_template("item_manage.html")
+        return redirect(url_for('auth.login'))
         #redirect to somewhere
 
 
