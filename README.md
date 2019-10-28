@@ -30,10 +30,7 @@ python.exe
 
 >>> db.create_all(app=create_app())
 
-How to convert the SQLLite to a 
-heroku login -i
-heroku git:remote -a virtuosity
-git push
+
 
 Good luck lads!
 

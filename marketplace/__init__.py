@@ -14,7 +14,8 @@ from .models import User, Artwork, Bid, Purchase
 def create_app():
     app = Flask(__name__)  # this is the name of the module/package that is calling this app
     #set the app configuration data 
-    app.config['SQLALCHEMY_DATABASE_URI']='sqlite:///marketplace.sqlite'
+    #use heroku postgresql both locally and remotely
+    app.config['SQLALCHEMY_DATABASE_URI']='postgres://dmkcxxmnrnzqmv:12b2d1f6075ae5232d1dfd1b2d4222cca4414a773030f622cc98044c0b1f66af@ec2-174-129-253-101.compute-1.amazonaws.com:5432/d5lrdgfpnqvdun'
     #app.config['SQLALCHEMY_DATABASE_URI']=os.environ['sqlite:///marketplace.sqlite']
     dirname = os.path.dirname(__file__)
     app.config['UPLOAD_FOLDER'] = os.path.join(dirname, 'static/img/')

@@ -13,9 +13,10 @@ class User(db.Model, UserMixin):
     # Basic information
     first_name = db.Column(db.String(100), nullable = False)
     last_name = db.Column(db.String(100), nullable = False)
+    phone = db.Column(db.String(20), nullable = True)
     profile = db.Column(db.String(10000), default = "N/A")
     favourites = db.Column(db.String(1000), default = "N/A")
-    join_date = db.Column(db.DateTime, nullable = False)
+    join_date = db.Column(db.DateTime,  nullable = False)
     is_seller = db.Column(db.Boolean, default = False)
 
     # Relation to other tables
@@ -28,7 +29,7 @@ class Artwork(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     seller_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     image_address = db.Column(db.String(500), nullable = False)
-    create_date = db.Column(db.String(10), nullable = False)
+    create_date = db.Column(db.DateTime, nullable = False)
 
     name = db.Column(db.String(1000), nullable = False)
     category = db.Column(db.String(300), nullable = False)
