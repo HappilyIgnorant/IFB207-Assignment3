@@ -107,6 +107,8 @@ def manage_list():
 @login_required
 def item_manage(art_id): # Query based on current_user.id
      artwork = Artwork.query.filter_by(id = art_id).first()
+     art_date = str(artwork.create_date).split(' ')[0].split('-')
+     art_date = art_date[2]+'/'+art_date[1]+'/'+art_date[0]
      num_bids = Bid.query.filter_by(artwork_id = art_id).count()
      num_bidders = Bid.query.filter_by(artwork_id = art_id).distinct(Bid.bidder).group_by(Bid.bidder).count()
      bids = Bid.query.filter_by(artwork_id = art_id).order_by(db.desc(Bid.date))
@@ -122,7 +124,7 @@ def item_manage(art_id): # Query based on current_user.id
           bid_counter += 1
      deposit = round(artwork.price*0.1)
      table_info = db.session.query(Bid, User).filter(Bid.bidder == User.id)
-     return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info)
+     return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info, art_date = art_date)
 
 
  #Menu links
