@@ -113,15 +113,17 @@
                             <thead class="bg-warning">
                                 <tr>
                                     <th scope="col">Date</th>
+                                    <th scope="col">Time</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Select</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                {% for bid in bids %}
+                                {% for i in range(num_bids) %}
                                 <tr>
-                                    <th scope="row">{{bid.date}}</th>
-                                    <td>{{bid.bidder}}</td>
+                                    <th scope="row">{{dates[i]}}</th>
+                                    <th scope="row">{{times[i]}}</th>
+                                    <td>Bidder</td>
                                     <td>Insert button</td>
                                 </tr>
                                 {% endfor %}
