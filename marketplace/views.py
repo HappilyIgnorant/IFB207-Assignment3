@@ -108,19 +108,18 @@ def manage_list():
 def item_manage(art_id): # Query based on current_user.id
      artwork = Artwork.query.filter_by(id = art_id).first()
      num_bids = Bid.query.filter_by(artwork_id = art_id).count()
-     num_bidders = Bid.query.filter_by(artwork_id = art_id).distinct(Bid.bidder).count()
-     bids = Bid.query.filter_by(artwork_id = art_id)
+     num_bidders = Bid.query.filter_by(artwork_id = art_id).distinct(Bid.bidder).group_by(Bid.bidder).count()
+     bids = Bid.query.filter_by(artwork_id = art_id).order_by(db.desc(Bid.date))
      formatted_dates = []
      formatted_times = []
      bid_counter = 0
      for bid in bids:
-          date = artwork.create_date.split(' ')[0].split('-')
+          date = str(bid.date).split(' ')[0].split('-')
           date = date[2]+'/'+date[1]+'/'+date[0]
           formatted_dates.append(date)
-          time = artwork.create_date.split(' ')[1].split('.')[0]
+          time = str(bid.date).split(' ')[1].split('.')[0]
           formatted_times.append(time)
           bid_counter += 1
-     date = 1
      deposit = round(artwork.price*0.1)
      table_info = db.session.query(Bid, User).filter(Bid.bidder == User.id)
      return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info)
