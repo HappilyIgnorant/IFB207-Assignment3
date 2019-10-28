@@ -110,10 +110,19 @@ def item_manage(art_id): # Query based on current_user.id
      num_bids = Bid.query.filter_by(artwork_id = art_id).count()
      num_bidders = Bid.query.filter_by(artwork_id = art_id).distinct(Bid.bidder).count()
      bids = Bid.query.filter_by(artwork_id = art_id)
-     date = artwork.create_date.split(' ')[0].split('-')
-     date = date[2]+'/'+date[1]+'/'+date[0]
+     formatted_dates = []
+     formatted_times = []
+     bid_counter = 0
+     for bid in bids:
+          date = artwork.create_date.split(' ')[0].split('-')
+          date = date[2]+'/'+date[1]+'/'+date[0]
+          formatted_dates.append(date)
+          time = artwork.create_date.split(' ')[1].split('.')[0]
+          formatted_times.append(time)
+          bid_counter += 1
+     date = 1
      deposit = round(artwork.price*0.1)
-     return render_template("item_manage.html", artwork = artwork, num_bids = num_bids, num_bidders = num_bidders, date = date, deposit = deposit, bids = bids)
+     return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter)
 
 
  #Menu links
