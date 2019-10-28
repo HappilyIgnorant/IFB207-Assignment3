@@ -114,7 +114,9 @@
                                 <tr>
                                     <th scope="col">Date</th>
                                     <th scope="col">Time</th>
-                                    <th scope="col">Name</th>
+                                    <th scope="col">First Name</th>
+                                    <th scope="col">Last Name</th>
+                                    <th scope="col">Email</th>
                                     <th scope="col">Select</th>
                                 </tr>
                             </thead>
@@ -123,7 +125,9 @@
                                 <tr>
                                     <th scope="row">{{dates[i]}}</th>
                                     <th scope="row">{{times[i]}}</th>
-                                    <td>Bidder</td>
+                                    <td>{{table_info[i][1].first_name}}</td>
+                                    <td>{{table_info[i][1].last_name}}</td>
+                                    <td>{{table_info[i][1].email}}</td>
                                     <td>Insert button</td>
                                 </tr>
                                 {% endfor %}
