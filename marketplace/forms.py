@@ -71,3 +71,6 @@ class SearchForm(FlaskForm):
 
 class BidForm(FlaskForm):
     bidButton = SubmitField("Bid")
+
+class SelectForm(FlaskForm):
+    selectButton = SubmitField("Confirm")
