@@ -69,8 +69,13 @@ def item_details(id):
      images_count = len(art_images)
      seller = User.query.filter_by(id = artwork.seller_id).first()
      bidded = Bid.query.filter_by(artwork_id = id, bidder = current_user.id).first()
+     sold_date = ''
+     if artwork.availability == False:
+          sold_date = Purchase.query.filter_by(artwork_id = id).first()
+          sold_date = str(sold_date.date).split(' ')[0].split('-')
+          sold_date = sold_date[2]+'/'+sold_date[1]+'/'+sold_date[0]
      if request.method=='GET':
-          return render_template("item_details.html", form = bid, artwork = artwork, seller = seller, images_count = images_count, art_images = art_images, bidded = bidded)
+          return render_template("item_details.html", form = bid, artwork = artwork, seller = seller, images_count = images_count, art_images = art_images, bidded = bidded, sold_date = sold_date)
      else:
           if bid.validate_on_submit():
                new_bid= Bid(artwork_id = id, bidder = current_user.id, seller = artwork.seller_id, date = datetime.datetime.now())
@@ -78,7 +83,7 @@ def item_details(id):
                db.session.commit()
                return redirect(url_for('main.index'))
           
-          return render_template("item_details.html", form = bid, artwork = artwork, seller = seller, images_count = images_count, art_images = art_images)
+          return render_template("item_details.html", form = bid, artwork = artwork, seller = seller, images_count = images_count, art_images = art_images, bidded = bidded, sold_date = sold_date)
 
 @bp.route('/buy')
 def buy():
