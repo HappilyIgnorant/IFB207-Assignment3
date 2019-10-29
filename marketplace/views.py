@@ -98,8 +98,14 @@ def select_item():
 @login_required
 def past_sales():
      sales = Purchase.query.filter_by(seller = current_user.id)
-     num_sales = Artwork.query.filter_by(seller= current_user.id).count()
-     return render_template("manage_list.html", sales = sales, num_sales = num_sales)
+     num_sales = Purchase.query.filter_by(seller = current_user.id).count()
+     sale_info = db.session.query(Purchase, User, Artwork).filter(Purchase.artwork_id == Artwork.id, Purchase.buyer == User.id, Purchase.seller == current_user.id).order_by(db.desc(Purchase.date))
+     dates = []
+     for sale in sales:
+          date = str(sale.date).split(' ')[0].split('-')
+          date = date[2]+'/'+date[1]+'/'+date[0]
+          dates.append(date)
+     return render_template("past_sales.html", sales = sales, num_sales = num_sales, dates = dates, sales_info = sale_info)
 
 @bp.route('/manage_list')
 @login_required
@@ -145,10 +151,10 @@ def item_manage(art_id): # Query based on current_user.id
                buyer_id = request.form.get("buyer_id")
                print(buyer_id)
                new_purchase= Purchase(artwork_id = art_id, buyer = buyer_id, seller = artwork.seller_id, date = datetime.datetime.now(), price = artwork.price, notes = "None")
-               # artwork.availability = 0 #this should do it
+               artwork.availability = 0 #this should do it
                db.session.add(new_purchase)
                db.session.commit()
-               return redirect(url_for('main.index'))
+               return redirect(url_for('main.past_sales'))
           return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info, art_date = art_date, form = form)
 
 
