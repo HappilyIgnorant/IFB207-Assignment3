@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     # Basic information
     first_name = db.Column(db.String(100), nullable = False)
     last_name = db.Column(db.String(100), nullable = False)
-    phone = db.Column(db.String(20), nullable = True)
+    phone_number = db.Column(db.String(20), nullable = True)
     profile = db.Column(db.String(10000), default = "N/A")
     favourites = db.Column(db.String(1000), default = "N/A")
     join_date = db.Column(db.DateTime,  nullable = False)
