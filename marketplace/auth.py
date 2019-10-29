@@ -50,6 +50,7 @@ def register():
         email=request.form.get('email_id')
         firstn=request.form.get('first_name')
         lastn=request.form.get('last_name')
+        phonenum=request.form.get('phone_number')
         password=request.form.get('password')
         confirm=request.form.get('confirm')
         biography=request.form.get('biography')
@@ -68,7 +69,7 @@ def register():
         print(confirm)
         print(biography)
 
-        new_user = User(email=email, first_name=firstn,last_name=lastn, profile=biography,join_date=datetime.datetime.now(), password_hash=generate_password_hash(password, method='sha256'))
+        new_user = User(email=email, first_name=firstn,last_name=lastn, profile=biography,join_date=datetime.datetime.now(), phone_number = phonenum, password_hash=generate_password_hash(password, method='sha256'))
 
         db.session.add(new_user)
         db.session.commit()
