@@ -134,6 +134,7 @@ def item_manage(art_id): # Query based on current_user.id
           bid_counter += 1
      deposit = round(artwork.price*0.1)
      table_info = db.session.query(Bid, User).filter(Bid.bidder == User.id)
+     print(table_info)
 
      if request.method=='GET':
           return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info, art_date = art_date, form = form)
