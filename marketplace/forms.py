@@ -19,6 +19,7 @@ class RegisterForm1(FlaskForm):
     first_name=StringField("First Name", validators=[DataRequired()])
     last_name=StringField("Last Name", validators=[DataRequired()])
     email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email")])
+    phone_number=IntegerField("Contact Number", validators=[DataRequired()])
     
     #linking two fields - password should be equal to data entered in confirm
     password=PasswordField("Password", validators=[DataRequired(message=(u'That\'s not a valid email address.')),])
