@@ -68,8 +68,9 @@ def item_details(id):
      art_images = artwork.image_address.split(",")
      images_count = len(art_images)
      seller = User.query.filter_by(id = artwork.seller_id).first()
+     bidded = Bid.query.filter_by(artwork_id = id, bidder = current_user.id).first()
      if request.method=='GET':
-          return render_template("item_details.html", form = bid, artwork = artwork, seller = seller, images_count = images_count, art_images = art_images)
+          return render_template("item_details.html", form = bid, artwork = artwork, seller = seller, images_count = images_count, art_images = art_images, bidded = bidded)
      else:
           if bid.validate_on_submit():
                new_bid= Bid(artwork_id = id, bidder = current_user.id, seller = artwork.seller_id, date = datetime.datetime.now())
@@ -133,7 +134,7 @@ def item_manage(art_id): # Query based on current_user.id
           formatted_times.append(time)
           bid_counter += 1
      deposit = round(artwork.price*0.1)
-     table_info = db.session.query(Bid, User).filter(Bid.bidder == User.id)
+     table_info = db.session.query(Bid, User).filter(Bid.bidder == User.id, Bid.artwork_id == art_id).order_by(db.desc(Bid.date))
      print(table_info)
 
      if request.method=='GET':

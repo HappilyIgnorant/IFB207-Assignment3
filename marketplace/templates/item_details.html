@@ -76,6 +76,8 @@
                         {% if current_user.is_authenticated %}
                             {% if current_user.id == seller.id %}
                                 <a href="{{ url_for('main.item_manage', art_id = artwork.id) }}"><button class="btn btn-success float-right" style="width:180px" type="button">Manage this item</button></a>
+                            {% elif bidded %}
+                                <button type="button" class="btn btn-secondary float-right" disabled>Bidded</button>
                             {% else %}
                                 <form method="POST">
                                     {{ form.csrf_token }}
