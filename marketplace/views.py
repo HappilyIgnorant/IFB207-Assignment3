@@ -95,7 +95,7 @@ def select_item():
 
 @bp.route('/past_sales')
 @login_required
-def select_item():
+def past_sales():
      sales = Purchase.query.filter_by(seller = current_user.id)
      num_sales = Artwork.query.filter_by(seller= current_user.id).count()
      return render_template("manage_list.html", sales = sales, num_sales = num_sales)
@@ -110,7 +110,7 @@ def manage_list():
      return render_template("manage_list.html", artworks = artwork, num_results = num_results)
 
 
-@bp.route('/item_manage/<art_id>')
+@bp.route('/item_manage/<art_id>', methods=['GET', 'POST'])
 @login_required
 def item_manage(art_id): # Query based on current_user.id
      artwork = Artwork.query.filter_by(id = art_id).first()
@@ -123,10 +123,7 @@ def item_manage(art_id): # Query based on current_user.id
      formatted_times = []
      bid_counter = 0
 
-     form = []
-     for i in range(num_bids):
-          form[i] = SelectForm()
-     # form = SelectForm()
+     form = SelectForm()
      
      for bid in bids:
           date = str(bid.date).split(' ')[0].split('-')
@@ -137,16 +134,19 @@ def item_manage(art_id): # Query based on current_user.id
           bid_counter += 1
      deposit = round(artwork.price*0.1)
      table_info = db.session.query(Bid, User).filter(Bid.bidder == User.id)
+
      if request.method=='GET':
           return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info, art_date = art_date, form = form)
      else:
-          for i in range(num_bids):
-               if form[i].validate_on_submit():
-                    new_purchase= Purchase(artwork_id = art_id, buyer = 1, seller = artwork.seller_id, date = datetime.datetime.now(), price = artwork.price, notes = "None")
-                    artwork.availability = 0 #this should do it
-                    db.session.add(new_purchase)
-                    db.session.commit()
-                    return redirect(url_for('main.index'))
+          # for i in range(bid_counter): 
+          if form.validate_on_submit():
+               buyer_id = request.form.get("buyer_id")
+               print(buyer_id)
+               new_purchase= Purchase(artwork_id = art_id, buyer = buyer_id, seller = artwork.seller_id, date = datetime.datetime.now(), price = artwork.price, notes = "None")
+               # artwork.availability = 0 #this should do it
+               db.session.add(new_purchase)
+               db.session.commit()
+               return redirect(url_for('main.index'))
           return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info, art_date = art_date, form = form)
 
 

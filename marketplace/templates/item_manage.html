@@ -129,12 +129,12 @@
                                     <td>{{table_info[i][1].last_name}}</td>
                                     <td>{{table_info[i][1].email}}</td>
                                     <td><!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
-                                          Select Bidder
+                                        <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{i}}">
+                                            Select Bidder
                                         </button>
                                         
                                         <!-- Modal -->
-                                        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal fade" id="modal{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                           <div class="modal-dialog" role="document">
                                             <div class="modal-content">
                                               <div class="modal-header">
@@ -144,15 +144,17 @@
                                                 </button>
                                               </div>
                                               <div class="modal-body">
-                                                    <p>Would you like to sell you artwork {{artwork.name}} to {{table_info[i][1].first_name}} {{table_info[i][1].last_name}}?</p>
+                                                    <p>Would you like to sell your artwork {{artwork.name}} to {{table_info[i][1].first_name}} {{table_info[i][1].last_name}}?</p>
                                                     <p>If yes, select "Confirm". Otherwise, select "Cancel".</p>
-                                                    <p>By selecting "Confirm", you agree to organise delivery with the customer. This item will be marked as SOLD</p>
+                                                    <p>By selecting "Confirm", you agree to organise delivery with the customer. This item will be marked as SOLD.</p>
                                               </div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                                                
                                                 <form method="POST">
-                                                    {{ form[i].csrf_token }}
-                                                    {{wtf.form_field(form[i].selectButton, class="btn btn-success float-right")}}
+                                                    <input value = "{{table_info[i][1].id}}" type="hidden" name="buyer_id">
+                                                    {{ form.csrf_token }}
+                                                    {{wtf.form_field(form.selectButton, class="btn btn-success float-right")}}
                                                 </form>
                                                 <!--<a href="{{ url_for('main.item_manage', art_id = artwork.id) }}"><button class="btn btn-success float-right" style="width:180px" type="button">Select Bidder</button></a>-->
                                               </div>

@@ -74,3 +74,4 @@ class BidForm(FlaskForm):
 
 class SelectForm(FlaskForm):
     selectButton = SubmitField("Confirm")
+    test = StringField()
