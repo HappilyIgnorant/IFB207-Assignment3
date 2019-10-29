@@ -110,7 +110,7 @@ def item_manage(art_id): # Query based on current_user.id
      art_date = str(artwork.create_date).split(' ')[0].split('-')
      art_date = art_date[2]+'/'+art_date[1]+'/'+art_date[0]
      num_bids = Bid.query.filter_by(artwork_id = art_id).count()
-     num_bidders = Bid.query.filter_by(artwork_id = art_id).distinct(Bid.bidder).group_by(Bid.bidder).count()
+     num_bidders = Bid.query.filter_by(artwork_id = art_id).distinct(Bid.bidder).group_by(Bid.bidder, Bid.id).count()
      bids = Bid.query.filter_by(artwork_id = art_id).order_by(db.desc(Bid.date))
      formatted_dates = []
      formatted_times = []
