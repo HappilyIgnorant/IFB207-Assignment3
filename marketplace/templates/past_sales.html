@@ -19,23 +19,16 @@
     </div>
     <div class="row">
     {% endif %}
-        <!--ENTER THE APPROPRIATE DISPLAY DETAILS HERE-->
-        <!--<div class="card mb-3 col-md-4 card border-secondary">
-            <img src="../static/img/{{artworks[i].image_address}}" class="card-img-top" alt="...">
+        <div class="card mb-3 col-md-4 card border-secondary">
+            <img src="../static/img/{{sales_info[i][2].image_address}}" class="card-img-top" alt="...">
             <div class="card-body">
-                <h5 class="card-title">{{purchases[i].artwork_id}}</h5>
-                <p class="card-text"><b>Price:</b> ${{artworks[i].price}}</p>
-                {% if artworks[i].availability == True %}
-                <p class="card-text"><b>Status:</b> Available</p>
-                {% else %}
-                <p class="card-text"><b>Status:</b> SOLD</p>
-                {% endif %}
-                <p class="card-text">{{artworks[i].description}}</p>
+                <h5 class="card-title">{{sales_info[i][2].name}}</h5>
+                <p class="card-text">{{sales_info[i][2].description}}</p>
+                <p class="card-text"><b>Sale date:</b> {{dates[i]}}</p>
+                <p class="card-text"><b>Sold To:</b> {{sales_info[i][1].first_name}} {{sales_info[i][1].last_name}}</p>
+                <p class="card-text"><b>Price:</b> ${{sales_info[i][2].price}}</p>
             </div>
-            <div class="card-footer">
-                <small class="text-muted float-right">Created on: {{artworks[i].create_date}}</small>
-            </div>
-        </div>-->
+        </div>
     {% endfor %}
     </div>
 </div>
