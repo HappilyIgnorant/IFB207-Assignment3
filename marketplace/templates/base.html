@@ -65,17 +65,16 @@
                 <div class="collapse navbar-collapse navbar-custom" id="navbarSupportedContent">
                     <ul class="nav navbar-nav mx-auto">
                         {% if session['seller'] %}
-                            <li class="nav-item highlight"><a class="nav-link py-0" href="{{ url_for('main.past_sales')}}">SALE HISTORY</a></li>
-                            <li class="nav-item highlight"><a class="nav-link py-0" href="{{ url_for('main.manage_list')}}">YOUR INVENTORY</a></li>
-                            <li class="nav-item highlight"><a class="nav-link py-0" href="{{ url_for('main.gallery') }}">GALLERY</a></li><div class="separator">|</div>
-                            <li class="nav-item"><a class="nav-link py-0" href="#">INVENTORY</a></li>
+                            <li class="nav-item highlight"><a class="nav-link py-0" href="{{ url_for('main.gallery') }}">GALLERY</a></li>
+                            <li class="nav-item highlight"><a class="nav-link py-0" href="{{ url_for('main.manage_list')}}">YOUR INVENTORY</a>
+                            <li class="nav-item highlight"><a class="nav-link py-0" href="{{ url_for('main.past_sales')}}">SALE HISTORY</a></li></li><div class="separator">|</div>
                             <li class="nav-item"><a class="nav-link py-0" href="#">PRICING</a></li>
                             <li class="nav-item"><a class="nav-link py-0" href="#">ORDERS</a></li>
                             <li class="nav-item"><a class="nav-link py-0" href="#">FINANCE</a></li>
                             <li class="nav-item"><a class="nav-link py-0" href="#">OUR SERVICES</a></li>
                         {% else %}
-                            <li class="nav-item highlight"><a class="nav-link py-0" href="{{ url_for('main.auctions') }}">AUCTIONS</a></li>
-                            <li class="nav-item highlight"><a class="nav-link py-0" href="{{ url_for('main.gallery') }}">GALLERY</a></li><div class="separator">|</div>
+                            <li class="nav-item highlight"><a class="nav-link py-0" href="{{ url_for('main.gallery') }}">GALLERY</a></li>
+                            <li class="nav-item highlight"><a class="nav-link py-0" href="{{ url_for('main.bidded_items') }}">YOUR BIDDED ITEMS</a></li><div class="separator">|</div>
                             <li class="nav-item"><a class="nav-link py-0" href="{{ url_for('main.oilpainting') }}">OIL PAINTING</a></li>
                             <li class="nav-item"><a class="nav-link py-0" href="{{ url_for('main.prints') }}">PRINT</a></li>
                             <li class="nav-item"><a class="nav-link py-0" href="{{ url_for('main.sculpture') }}">SCULPTURE</a></li>

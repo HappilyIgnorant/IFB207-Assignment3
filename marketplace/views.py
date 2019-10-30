@@ -18,6 +18,7 @@ bp = Blueprint('main', __name__)
 
 @bp.route('/')
 def index():
+     session['seller'] = False
      artwork = Artwork.query.all()
      return render_template("index.html", artwork = artwork)
 
@@ -60,9 +61,10 @@ def sell():
           
           return render_template("item_create.html", form = form)
      
-     
+
 @bp.route('/item_details/<id>', methods=['GET', 'POST'])
 def item_details(id):
+     session['seller'] = False
      bid = BidForm()
      artwork = Artwork.query.filter_by(id = id).first()
      art_images = artwork.image_address.split(",")
@@ -98,12 +100,14 @@ def buy():
 @bp.route('/select-item')
 @login_required
 def select_item():
+     session['seller'] = True
      artworks = Artwork.query.all()
      return render_template("item_manage.html")
 
 @bp.route('/past_sales')
 @login_required
 def past_sales():
+     session['seller'] = True
      sales = Purchase.query.filter_by(seller = current_user.id)
      num_sales = Purchase.query.filter_by(seller = current_user.id).count()
      sale_info = db.session.query(Purchase, User, Artwork).filter(Purchase.artwork_id == Artwork.id, Purchase.buyer == User.id, Purchase.seller == current_user.id).order_by(db.desc(Purchase.date))
@@ -127,6 +131,7 @@ def manage_list():
 @bp.route('/item_manage/<art_id>', methods=['GET', 'POST'])
 @login_required
 def item_manage(art_id): # Query based on current_user.id
+     session['seller'] = True
      artwork = Artwork.query.filter_by(id = art_id).first()
      art_date = str(artwork.create_date).split(' ')[0].split('-')
      art_date = art_date[2]+'/'+art_date[1]+'/'+art_date[0]
@@ -176,26 +181,41 @@ def artists():
 def auctions():
      return render_template("_auctions.html")
 
+@bp.route('/bidded_items')
+@login_required
+def bidded_items():
+     session['seller'] = False
+     bids = Bid.query.filter_by(bidder = current_user.id)
+     num_results = Bid.query.filter_by(bidder = current_user.id).count()
+     artwork = []
+     for i in range(num_results):
+          artwork.append(Artwork.query.filter_by(id = bids[i].artwork_id).first())
+     return render_template("bidded_items.html", bids = bids, num_results = num_results, artworks = artwork)
+
 @bp.route('/oilpainting')
 def oilpainting():
+     session['seller'] = False
      artworks = Artwork.query.filter_by(category = 'Oil Painting')
      num_results = Artwork.query.filter_by(category = 'Oil Painting').count()
      return render_template("_oil_painting.html", artworks = artworks, num_results = num_results)
 
 @bp.route('/prints')
 def prints():
+     session['seller'] = False
      artworks = Artwork.query.filter_by(category = 'Print')
      num_results = Artwork.query.filter_by(category = 'Print').count()
      return render_template("_print.html", artworks = artworks, num_results = num_results)
 
 @bp.route('/sculpture')
 def sculpture():
+     session['seller'] = False
      artworks = Artwork.query.filter_by(category = 'Sculpture')
      num_results = Artwork.query.filter_by(category = 'Sculpture').count()
      return render_template("_sculpture.html", artworks = artworks, num_results = num_results)
 
 @bp.route('/watercolour')
 def watercolour():
+     session['seller'] = False
      artworks = Artwork.query.filter_by(category = 'Watercolor')
      num_results = Artwork.query.filter_by(category = 'Watercolor').count()
      return render_template("_watercolour.html", artworks = artworks, num_results = num_results)

@@ -89,7 +89,7 @@
                             <div class="alert alert-warning" role="alert">Interested in this item? <a href="{{ url_for('auth.login') }}">Login</a> to bid.</div>
                         {% endif %}
                     {% else %}
-                    <dt class="col-12" style="color:red">SOLD ON<p>{{sold_date}}</p></dt>
+                    <dt class="col-12" style="color:red">SOLD ON {{sold_date}}</dt>
                     {% endif %}
                 </dl>    
             </div>
