@@ -68,7 +68,9 @@ def item_details(id):
      art_images = artwork.image_address.split(",")
      images_count = len(art_images)
      seller = User.query.filter_by(id = artwork.seller_id).first()
-     bidded = Bid.query.filter_by(artwork_id = id, bidder = current_user.id).first()
+     bidded = ''
+     if current_user.is_authenticated:
+          bidded = Bid.query.filter_by(artwork_id = id, bidder = current_user.id).first()
      sold_date = ''
      if artwork.availability == False:
           sold_date = Purchase.query.filter_by(artwork_id = id).first()
@@ -81,7 +83,7 @@ def item_details(id):
                new_bid= Bid(artwork_id = id, bidder = current_user.id, seller = artwork.seller_id, date = datetime.datetime.now())
                db.session.add(new_bid)
                db.session.commit()
-               return redirect(url_for('main.index'))
+               return redirect(url_for('main.item_details', id = id))
           
           return render_template("item_details.html", form = bid, artwork = artwork, seller = seller, images_count = images_count, art_images = art_images, bidded = bidded, sold_date = sold_date)
 
