@@ -37,7 +37,7 @@
                             <img href="#" class = "img-fluid" src="../static/img/{{artwork.image_address}}" alt="...">
                         </div>
                         <div class="col-md-12">
-                            <h6><a href="#">{{artwork.name}}</a></h6>
+                            <h5 class = "text-center pt-2">{{artwork.name}}</a></h5>
                             <p>{{artwork.description}}</p>
                         </div>
                     </div>
@@ -65,7 +65,7 @@
                                 </div>
                                 <div class="col-8">
                                     <p>Your shipping is currently covered by our services, to configure your settings go to
-                                        'OUR SERVICES' and configure it there (Note, it may take at most 24 hours to come into
+                                        <b>OUR SERVICES</b> and configure it there (Note, it may take at most 24 hours to come into
                                         effect)</p>
                                 </div>
                             </div>
@@ -147,8 +147,8 @@
                                               </div>
                                               <div class="modal-body">
                                                     <p>Would you like to sell your artwork {{artwork.name}} to {{table_info[i][1].first_name}} {{table_info[i][1].last_name}}?</p>
-                                                    <p>If yes, select "Confirm". Otherwise, select "Cancel".</p>
-                                                    <p>By selecting "Confirm", you agree to organise delivery with the customer. This item will be marked as SOLD.</p>
+                                                    <p>If yes, select <font color="green"><b>Confirm</b></font>. Otherwise, select <font color="red"><b>Cancel</b></font>.</p>
+                                                    <p>By selecting <font color="green"><b>Confirm</b></font>, you agree to organise delivery with the customer. This item will be marked as <font color="red"><b>SOLD</b></font>.</p>
                                               </div>
                                               <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
