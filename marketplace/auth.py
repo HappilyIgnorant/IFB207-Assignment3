@@ -47,35 +47,35 @@ def register():
         form3 = RegisterForm3()
         return render_template("registration.html", title='Sign Up',  f1=form1, f3=form3)
     else:
-        email=request.form.get('email_id')
-        firstn=request.form.get('first_name')
-        lastn=request.form.get('last_name')
-        phonenum=request.form.get('phone_number')
-        password=request.form.get('password')
-        confirm=request.form.get('confirm')
-        biography=request.form.get('biography')
+        form = RegisterForm1()
+        if form.validate_on_submit():
+            email=request.form.get('email_id')
+            firstn=request.form.get('first_name')
+            lastn=request.form.get('last_name')
+            phonenum=request.form.get('phone_number')
+            password=request.form.get('password')
+            confirm=request.form.get('confirm')
+            biography=request.form.get('biography')
 
-        user=User.query.filter_by(email=email).first()
-        if user:
-            flash('Email address already exists.')
-            return redirect(url_for('auth.register'))
+            user=User.query.filter_by(email=email).first()
+            if user:
+                flash('Email address already exists.')
+                return redirect(url_for('auth.register'))
 
+            print(email)
+            print(firstn)
+            print(lastn)
+            print(password)
+            print(confirm)
+            print(biography)
 
+            new_user = User(email=email, first_name=firstn,last_name=lastn, profile=biography,join_date=datetime.datetime.now(), phone_number = phonenum, password_hash=generate_password_hash(password, method='sha256'))
 
-        print(email)
-        print(firstn)
-        print(lastn)
-        print(password)
-        print(confirm)
-        print(biography)
+            db.session.add(new_user)
+            db.session.commit()
 
-        new_user = User(email=email, first_name=firstn,last_name=lastn, profile=biography,join_date=datetime.datetime.now(), phone_number = phonenum, password_hash=generate_password_hash(password, method='sha256'))
-
-        db.session.add(new_user)
-        db.session.commit()
-
-        return redirect(url_for('auth.login'))
-        #redirect to somewhere
+            return redirect(url_for('auth.login'))
+        return render_template("registration.html", title='Sign Up',  f1=form)
 
 
 @auth.route('/logout')

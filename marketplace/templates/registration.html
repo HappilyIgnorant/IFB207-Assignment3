@@ -7,7 +7,7 @@
     
     <style>
         body {
-            padding-top: 20vh;
+            padding-top: 17vh;
         }
 
         .carousel-item>.container {
@@ -33,15 +33,17 @@
         {% endwith %}
 
 
-    <div class="row mt-5 py-4 h-100">
+    <div class="row mt-5 py-4 h-auto">
         <div class="col md-12">
             <div id="accountMake" class="carousel slide" data-interval="false">
 
                 <!-- Wrapper for slides -->
                 <form id="regform" class="" action="/register" method="post" validate>
                     <div class="carousel-inner">
+                            
                         <h1>Register:</h1>
-                        <div class="carousel-item active">
+                        
+                        <div class="carousel-item active pb-5">
                             <div class="container">
                                 {{ f1.hidden_tag() }}
                                 <div class="row">
@@ -72,9 +74,9 @@
 
                             </div>
                         </div>
-                        <div class="carousel-item">
+                        <div class="carousel-item pb-5">
                             <div class="container">
-                                {{ wtf.form_field(f1.biography) }}
+                                {{ wtf.form_field(f1.biography, rows="7") }}
                                 <div class="col-12 mybottom">
                                     <button class="prevbtn" type="button" class="btn">PREV</button>
                                     <button class="btn btn-primary" >Submit</button>
@@ -82,17 +84,6 @@
                             </div>
 
                         </div>
-                        <!--<div class="carousel-item">
-                        <div class="container">
-                            {{wtf.quick_form(f3)}}
-                            {{ f1.next }}
-                            <div class="col-12 mybottom">
-                            <button class="prevbtn" type="button" class="btn">PREV</button>
-                            <button id="submitbtn" type="button" class="btn">SUBMIT</button>
-                            </div>
-                        </div>
-                    </div>-->
-                        <!-- Carousel Controls -->
 
                     </div>
                 </form>

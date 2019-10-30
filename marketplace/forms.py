@@ -8,23 +8,22 @@ from flask_wtf.file import FileRequired, FileAllowed
 
 #creates the login information
 class LoginForm(FlaskForm):
-    email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email")])
-    password=PasswordField("Password", validators=[DataRequired('Enter password')])
+    email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email.")])
+    password=PasswordField("Password", validators=[DataRequired('Enter password.')])
     submit = SubmitField("Login")
     remember_me = BooleanField('Remember Me')
 
  # this is the registration form
 class RegisterForm1(FlaskForm):
-    user_name=StringField("User Name", validators=[DataRequired()])
     first_name=StringField("First Name", validators=[DataRequired()])
     last_name=StringField("Last Name", validators=[DataRequired()])
-    email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email")])
-    phone_number=IntegerField("Contact Number", validators=[DataRequired()])
+    email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email.")])
+    phone_number=IntegerField("Contact Number", validators=[DataRequired("Please enter a valid phone number.")])
     
     #linking two fields - password should be equal to data entered in confirm
-    password=PasswordField("Password", validators=[DataRequired(message=(u'That\'s not a valid email address.')),])
+    password= PasswordField("Password", validators=[DataRequired(message=(u'That\'s not a valid email address.'))])
                   
-    confirm = PasswordField("Confirm Password", validators=[ EqualTo(password, message="test")])
+    confirm = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo('password', message="Password must match!")])
        
     #avatar=FileField("Upload avatar", validators=[regexp(u'^[^/\\]\.jpg$'), regexp(u'^[^/\\]\.png$'), regexp(u'^[^/\\]\.jpeg$'), 
                 #regexp(u'^[^/\\]\.gif$')])
