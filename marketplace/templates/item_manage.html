@@ -131,9 +131,15 @@
                                     <td>{{table_info[i][1].email}}</td>
                                     <td>{{table_info[i][1].phone_number}}</td>
                                     <td><!-- Button trigger modal -->
+                                        {% if check != 0 %}
+                                        <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modal{{i}}" disabled>
+                                            Select
+                                        </button>
+                                        {% else %}
                                         <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal{{i}}">
                                             Select
                                         </button>
+                                        {% endif %}
                                         
                                         <!-- Modal -->
                                         <div class="modal fade" id="modal{{i}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

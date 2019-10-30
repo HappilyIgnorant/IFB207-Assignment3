@@ -97,13 +97,6 @@ def buy():
      return render_template("index.html", artwork = artwork)
      
 
-@bp.route('/select-item')
-@login_required
-def select_item():
-     session['seller'] = True
-     artworks = Artwork.query.all()
-     return render_template("item_manage.html")
-
 @bp.route('/past_sales')
 @login_required
 def past_sales():
@@ -141,6 +134,7 @@ def item_manage(art_id): # Query based on current_user.id
      formatted_dates = []
      formatted_times = []
      bid_counter = 0
+     purchase_check = Purchase.query.filter_by(artwork_id = art_id).count()
 
      form = SelectForm()
      
@@ -155,7 +149,7 @@ def item_manage(art_id): # Query based on current_user.id
      table_info = db.session.query(Bid, User).filter(Bid.bidder == User.id, Bid.artwork_id == art_id).order_by(db.desc(Bid.date))
 
      if request.method=='GET':
-          return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info, art_date = art_date, form = form)
+          return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info, art_date = art_date, form = form, check = purchase_check)
      else:
           # for i in range(bid_counter): 
           if form.validate_on_submit():
@@ -166,7 +160,7 @@ def item_manage(art_id): # Query based on current_user.id
                db.session.add(new_purchase)
                db.session.commit()
                return redirect(url_for('main.past_sales'))
-          return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info, art_date = art_date, form = form)
+          return render_template("item_manage.html", artwork = artwork, num_bidders = num_bidders, dates = formatted_dates, times = formatted_times,  deposit = deposit, bids = bids, num_bids = bid_counter, table_info = table_info, art_date = art_date, form = form, check = purchase_check)
 
 
  #Menu links
