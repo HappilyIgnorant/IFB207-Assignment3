@@ -52,6 +52,11 @@
                                     </div>
                                     <div class="col-6">
                                         {{ wtf.form_field(f1.last_name) }}
+                                        <!--<ul>
+                                            {% for error in f1.last_name.errors %}
+                                            <li style="color:red;">{{error}}</li>
+                                           {% endfor %}
+                                        </ul>-->
                                     </div>
                                 </div>
                                 <div class="row">
@@ -71,7 +76,6 @@
                                         <button class="nextbtn" type="button" class="btn">NEXT</button>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
                         <div class="carousel-item pb-5">

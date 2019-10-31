@@ -63,7 +63,6 @@ def register():
                 return redirect(url_for('auth.register'))
             
             
-
             print(email)
             print(firstn)
             print(lastn)

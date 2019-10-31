@@ -2,28 +2,28 @@
 from flask_wtf import FlaskForm
 from wtforms import Form, SelectField
 from wtforms.fields import TextAreaField,SubmitField, StringField, PasswordField, FileField, SelectMultipleField, BooleanField, RadioField, IntegerField, MultipleFileField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.validators import DataRequired, Length, Email, EqualTo, InputRequired
 from flask_wtf.file import FileRequired, FileAllowed
 
 
 #creates the login information
 class LoginForm(FlaskForm):
-    email_id = StringField("Email Address", validators=[DataRequired(message="Please enter a valid email.")])
-    password=PasswordField("Password", validators=[DataRequired('Enter password.')])
+    email_id = StringField("Email Address", validators=[InputRequired(message="Please enter a valid email."),Email("Please enter a valid email.")])
+    password=PasswordField("Password", validators=[InputRequired('Enter password.')])
     submit = SubmitField("Login")
     remember_me = BooleanField('Remember Me')
 
  # this is the registration form
 class RegisterForm1(FlaskForm):
-    first_name=StringField("First Name", validators=[DataRequired()])
-    last_name=StringField("Last Name", validators=[DataRequired()])
-    email_id = StringField("Email Address", validators=[DataRequired(message="Please enter a valid email.")])
-    phone_number=IntegerField("Contact Number", validators=[DataRequired("Please enter a valid phone number.")])
+    first_name=StringField("First Name", validators=[InputRequired(message="Please enter your first name")])
+    last_name=StringField("Last Name", validators=[InputRequired(message="Please enter your last name")])
+    email_id = StringField("Email Address", validators=[InputRequired(message="Please enter a valid email."), Email("Please enter a valid email.")])
+    phone_number=IntegerField("Contact Number", validators=[InputRequired("Please enter a valid phone number.")])
     
     #linking two fields - password should be equal to data entered in confirm
-    password= PasswordField("Password", validators=[DataRequired(message=(u'That\'s not a valid email address.'))])
+    password= PasswordField("Password", validators=[InputRequired(message=('That\'s not a valid email address.'))])
                   
-    confirm = PasswordField("Confirm Password", validators=[DataRequired(), EqualTo('password', message="Password must match!")])
+    confirm = PasswordField("Confirm Password", validators=[InputRequired(), EqualTo('password', message="Password must match!")])
        
     #avatar=FileField("Upload avatar", validators=[regexp(u'^[^/\\]\.jpg$'), regexp(u'^[^/\\]\.png$'), regexp(u'^[^/\\]\.jpeg$'), 
                 #regexp(u'^[^/\\]\.gif$')])
@@ -53,11 +53,11 @@ CATEGORY_CHOICES = [('Oil Painting','Oil Painting'), ('Print','Print'), ('Sculpt
 class ItemDetails(FlaskForm):
     
     #selling_options = [("1", "Buy"), ("2", "Auction"), ("3", "Buy/Auction")]
-    name = StringField("", validators=[DataRequired(), Length(max = 75)])
+    name = StringField("", validators=[InputRequired(), Length(max = 75)])
     category = SelectField("Categories", choices=CATEGORY_CHOICES)
-    price = IntegerField("$ - Value in AUD", validators=[DataRequired(message="Please enter an appropriate price number.")])
+    price = IntegerField("$ - Value in AUD", validators=[InputRequired(message="Please enter an appropriate price number.")])
     options = RadioField('Label', choices=[('Auction','Auction'),('Buy','Buy'),('Auction/Buy', 'Auction/Buy')], default='Auction')
-    description = TextAreaField("Description", validators=[DataRequired(), Length(max = 5000)])
+    description = TextAreaField("Description", validators=[InputRequired(), Length(max = 5000)])
     image1 = FileField("Image File", validators=[FileRequired(), FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
     image2 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
     image3 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
