@@ -61,6 +61,8 @@ def register():
             if user:
                 flash('Email address already exists.')
                 return redirect(url_for('auth.register'))
+            
+            
 
             print(email)
             print(firstn)

@@ -8,7 +8,7 @@ from flask_wtf.file import FileRequired, FileAllowed
 
 #creates the login information
 class LoginForm(FlaskForm):
-    email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email.")])
+    email_id = StringField("Email Address", validators=[DataRequired(message="Please enter a valid email.")])
     password=PasswordField("Password", validators=[DataRequired('Enter password.')])
     submit = SubmitField("Login")
     remember_me = BooleanField('Remember Me')
@@ -17,7 +17,7 @@ class LoginForm(FlaskForm):
 class RegisterForm1(FlaskForm):
     first_name=StringField("First Name", validators=[DataRequired()])
     last_name=StringField("Last Name", validators=[DataRequired()])
-    email_id = StringField("Email Address", validators=[DataRequired(), Email("Please enter a valid email.")])
+    email_id = StringField("Email Address", validators=[DataRequired(message="Please enter a valid email.")])
     phone_number=IntegerField("Contact Number", validators=[DataRequired("Please enter a valid phone number.")])
     
     #linking two fields - password should be equal to data entered in confirm
