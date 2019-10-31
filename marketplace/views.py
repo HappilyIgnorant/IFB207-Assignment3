@@ -43,16 +43,21 @@ def sell():
                
                addresses = ""
                #Image uploading
-               image_forms = ['image1', 'image2', 'image3', 'image4', 'image5', 'image6']
+               image_forms = ['image1']
                for i in image_forms:
-                    f = request.files[i]
-                    if f:
-                         filename = secure_filename(f.filename)
-                         f.save(os.path.join(create_app().config['UPLOAD_FOLDER'], filename))
-                         if addresses == "":
-                              addresses = filename
-                         else:
-                              addresses += "," + filename
+                    try:
+                         filename=request.form.get(i)
+                         if(filename!=''):
+                              f = request.files[i]
+                              if f:
+                                   filename = secure_filename(f.filename)
+                                   f.save(os.path.join(create_app().config['UPLOAD_FOLDER'], filename))
+                                   if addresses == "":
+                                        addresses = filename
+                                   else:
+                                        addresses += "," + filename
+                    except:
+                         continue
           
                new_item = Artwork(seller_id = current_user.id, image_address = addresses, create_date = datetime.datetime.now(), name = title, category = category, price = price, description = description, availability = True)
                db.session.add(new_item)

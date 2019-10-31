@@ -16,12 +16,14 @@
 
 <div>
 <form class="item-form" method="POST" enctype="multipart/form-data">
+    {{ form.hidden_tag() }}
+    {{form.csrf_token()}}
     <div class="row">
         <div class="col-md-7">                   
             <div class="form-group row">
                 <label for="colFormTitle" class="col-sm-2 col-form-label">Title:</label>
                 <div class="col-sm-10">
-                    {{ form.hidden_tag() }}
+                    
                     {{ wtf.form_field(form.name) }}
                     <div class="float-right">75 character(s) remaining</div>
                 </div>
@@ -64,17 +66,7 @@
                 <div class="container-fluid">
                     <div class="row mt-2 py-3">
                         {{ form.image1(class="col-6 campic") }}
-                        {{ form.image2(class="col-6 campic") }}
                     </div>
-                    <div class="row mt-2 py-3">
-                        {{ form.image3(class="col-6 campic") }}
-                        {{ form.image4(class="col-6 campic") }}
-                    </div>
-                    <div class="row mt-2 py-3">
-                        {{ form.image5(class="col-6 campic") }}
-                        {{ form.image6(class="col-6 campic") }}
-                    </div>
-
                 </div>
 
 
