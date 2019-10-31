@@ -4,14 +4,16 @@ Jackson Hall - N10504915
 Justin Hughes - N10206191
 Trần Vũ Nhất Nam - N10306234
 
+Notes:
+We have implemented a PostgreSQL database and use it to deploy our app to Heroku, but it seems to be not really stable.
+If there is any issues, please change SQLALCHEMY_DATABASE_URI to 'sqlite:///...' (which is commented out)
+
 Test accounts:          Passwords:          Notes:
 batman@mail.com         batman              (Have 2 items for sale, 1 item sold, 3 items bidded)
 test@gmail.com          123                 (Nearly half of the items for sale was created by this account)
-charlie@gmail.com       123a                (Totally blank account)
+charlie@gmail.com       123a                (Totally blank account, not available in SQLite database)
 
 
-We have implemented a PostgreSQL server, but it seems to be not really stable, so we use our SQLite database instead.
-For marking purpose, please change SQLALCHEMY_DATABASE_URI to 'postgres:///...' as a proof of implementation.
 
 
 Images references

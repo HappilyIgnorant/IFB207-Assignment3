@@ -245,7 +245,7 @@ def page_404(error):
 
 @bp.route('/403')     
 def page_403(error):
-     return render_template("403.html"), 403
+     return render_template("403.html",error ), 403
 
 @bp.route('/500')     
 def page_500(error):
