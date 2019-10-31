@@ -14,8 +14,6 @@ test@gmail.com          123                 (Nearly half of the items for sale w
 charlie@gmail.com       123a                (Totally blank account, not available in SQLite database)
 
 
-
-
 Images references
 Finck, M. (n.d.). If You Go Down To The Woods Today [Image]. Retrieved from https://artloversaustralia.com.au/shop/if-you-go-down-to-the-woods-today/
 Skecth. (2019). Radical art of young people [Image]. Retrieved from https://www.sketch.ca/sketchPub/uploads/2019/03/radical-art-of-young-people.jpg

@@ -239,21 +239,25 @@ def search_results():
 
 # Just to test the page
 @bp.route('/404')     
-def page_404(error):
+def page_404():
      
-     return render_template("404.html"), 404
+     return render_template("404.html")
 
 @bp.route('/403')     
-def page_403(error):
-     return render_template("403.html",error ), 403
+def page_403():
+     return render_template("403.html")
 
 @bp.route('/500')     
-def page_500(error):
-     return render_template("500.html"), 500
+def page_500():
+     return render_template("500.html")
     
 @bp.route('/410')     
-def page_410(error):
-     return render_template("410.html"), 410
+def page_410():
+     return render_template("410.html")
+
+@bp.route('/400')     
+def page_400():
+     return render_template("400.html")
      
      #return render_template("results.html")
 
