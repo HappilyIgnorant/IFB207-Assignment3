@@ -15,13 +15,13 @@ class LoginForm(FlaskForm):
 
  # this is the registration form
 class RegisterForm1(FlaskForm):
-    first_name=StringField("First Name", validators=[Length(min=1 ,message="Please enter your first name")])
-    last_name=StringField("Last Name", validators=[Length(min=1 ,message="Please enter your last name")])
-    email_id = StringField("Email Address", validators=[Length(min=1 ,message="Please enter a valid email."), Email("Please enter a valid email.")])
-    phone_number=IntegerField("Contact Number", validators=[Length(min=1 ,message ="Please enter a valid phone number.")])
-    
+    first_name=StringField("First Name", validators=[DataRequired(message="Please enter your first name")])
+    last_name=StringField("Last Name", validators=[DataRequired(message="Please enter your last name")])
+    email_id = StringField("Email Address", validators=[DataRequired(message="Please enter a valid email."), Email("Please enter a valid email.")])
+    phone_number=IntegerField("Contact Number", validators=[DataRequired(message = "Please enter a valid phone number.")])
+    # if you can do that I will leave you to it ---------- I fixed it
     #linking two fields - password should be equal to data entered in confirm
-    password= PasswordField("Password", validators=[Length(min=1 ,message=('That\'s not a valid email address.'))])
+    password= PasswordField("Password", validators=[DataRequired(message='Please enter your password')])
                   
     confirm = PasswordField("Confirm Password", validators=[InputRequired(), EqualTo('password', message="Password must match!")])
        
@@ -59,6 +59,11 @@ class ItemDetails(FlaskForm):
     options = RadioField('Label', choices=[('Auction','Auction'),('Buy','Buy'),('Auction/Buy', 'Auction/Buy')], default='Auction')
     description = TextAreaField("Description", validators=[InputRequired(), Length(max = 5000)])
     image1 = FileField("Image File", validators=[FileRequired(), FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
+    image2 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
+    image3 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
+    image4 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
+    image5 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
+    image6 = FileField("Image File", validators=[FileAllowed(['png', 'jpg', 'jpeg'], "Please enter an appropriate image file format (Supported: JPG, PNG and JPEG)")])
     post = SubmitField("Post")
 
 class SearchForm(FlaskForm):
