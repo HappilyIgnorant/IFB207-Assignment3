@@ -18,6 +18,8 @@ pip install flask flask_bootstrap flask_sqlalchemy flask_login flask_wtf
 
 See below for a good video on how to setup and program this assignment in Flask 
 
+** updated to heroku 22
+
 
 https://www.youtube.com/watch?v=K0vSCCAM2ss
 
